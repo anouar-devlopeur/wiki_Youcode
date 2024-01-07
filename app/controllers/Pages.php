@@ -12,7 +12,7 @@ class Pages extends Controller {
             'title' => 'wiki',
         ];
 
-        $this->view('pages/Dashbord/Dashbord', $data);
+        $this->view('pages/users/Home', $data);
     }
     // public function FunctionName() {
     //     redirect('Pages/index');

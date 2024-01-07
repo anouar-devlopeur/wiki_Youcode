@@ -32,6 +32,7 @@ $data = [
 
 $this->view('pages/Dashbord/Categorie', $data);
 }
+
 // -----------------------------------Tags
 public function Tags() {
     $data = [
@@ -50,10 +51,42 @@ public function Tags() {
         $this->view('pages/Dashbord/Wiki', $data);
         }
     
+// ------------------------------------Categorie
+// Insert Categorie
 
-    // Usage example:
+public function InsertCategorie(){
+    if(isset($_POST['addCAT'])){
+      $Categorie_name=$_POST['Categorie'];
+     $Categoriy=new Categorie();
+     $Categoriy->setCategoryName($Categorie_name);
+     $this->categoy->InsertCategorie($Categoriy);
+     redirect('AdminController/Categorie');
+    }
+}
 
+    // Delete Categorie:
 
+    public function DelletCategorie()
+    {
+      if (isset($_GET['id'])) {
+        $id = $_GET['id'];
+        $this->categoy->DelletCategorie($id);
+  
+        redirect('AdminController/Categorie');
+      } else {
+        redirect('AdminController/Categorie');
+  
+              }
+        }
+        // ______________________Log Out----------------
+        public function logout()
+        {
+            $_SESSION['id_user'] = null;
+            $_SESSION['nom'] = null;
+            $_SESSION['email'] = null;
+            session_destroy();
+            redirect('');
+        }
  
 }
 ?>

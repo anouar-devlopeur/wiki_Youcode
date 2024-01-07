@@ -22,17 +22,17 @@ require APPROOT . '/views/inc/sidebar.php';
                             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                         </div>
                         <div class="modal-body">
-                            <form method="POST" action="<?= URLROOT ?>/DashbordControler/AddGenre"
+                            <form method="POST" action="<?= URLROOT ?>/AdminController/InsertCategorie"
                                 enctype="multipart/form-data">
                                 <div class="mb-3">
-                                    <label for="Genre" class="col-form-label">Categorie:</label>
-                                    <input type="text" class="form-control" name="Genre" required>
+                                    <label for="Categorie" class="col-form-label">Categorie:</label>
+                                    <input type="text" class="form-control" name="Categorie" required>
                                 </div>
 
                                 <div class="modal-footer">
                                     <button type="button" class="btn btn-secondary"
                                         data-bs-dismiss="modal">Close</button>
-                                    <button type="submit" name="submit" class="btn btn-primary">Add Categorie</button>
+                                    <button type="submit" name="addCAT" class="btn btn-primary">Add Categorie</button>
                                 </div>
                             </form>
                         </div>
@@ -80,7 +80,9 @@ require APPROOT . '/views/inc/sidebar.php';
                                                         <i class="btn btn-primary far fa-pen"></i>
                                                     </a>
 
-                                                    <a href=""><i class="btn btn-danger far fa-trash"></i></a>
+                                                    <a
+                                                        href="<?= URLROOT ?>/AdminController/DelletCategorie?id=<?= $cat->getCategoryID() ?>"><i
+                                                            class="btn btn-danger far fa-trash"></i></a>
                                                 </td>
                                             </tr>
                                             <?php } ?>

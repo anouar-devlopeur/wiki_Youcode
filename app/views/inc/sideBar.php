@@ -27,12 +27,12 @@
                         <span>Post_Author</span>
                     </a>
                 </li>
-                <form action="" class=" ps-5 mt-5">
+                <form action="<?= URLROOT ?>/AdminController/logout" class=" ps-5 mt-5">
 
                     <button class="btn bg-dark ms-1 w-75">
-                        <a href="#" class="nav-link px-3">
+                        <span class="nav-link px-3">
                             <span>Log Out</span>
-                        </a>
+                        </span>
                     </button>
                 </form>
             </ul>

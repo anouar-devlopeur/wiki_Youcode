@@ -4,6 +4,7 @@ class CategorieDao
 {
     private $db;
     private Categorie $category;
+    //dependency-injection crrer class on class construuct exemple Categorie
     public function __construct()
     {
         $this->db = new Database();
@@ -66,7 +67,7 @@ class CategorieDao
         }
     }
     //delete
-    public function DeletCategorie(Categorie $categorie)
+    public function DeleteCategorie(Categorie $categorie)
     {
         try {
             $categorie_id=$categorie->getCategoryID();

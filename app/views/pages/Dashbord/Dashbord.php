@@ -11,40 +11,40 @@ require APPROOT . '/views/inc/sidebar.php';
             </div>
         </div>
         <div class="row">
-            <div class="col-md-3 mb-3">
+            <div class="col-md-4 mb-3">
                 <div class="card bg-primary text-white h-100">
-                    <div class="card-body py-5">Primary Card</div>
-                    <div class=" d-flex">
-
+                    <div class="card-body py-5 fs-3">Categorie</div>
+                    <div class=" d-flex justify-content-end me-3">
+                        <h2 class=""><?php  echo $data['Catgorie'] ?></h2>
                     </div>
                 </div>
             </div>
-            <div class="col-md-3 mb-3">
-                <div class="card bg-warning text-dark h-100">
-                    <div class="card-body py-5">Warning Card</div>
-                    <div class=" d-flex">
-
+            <div class="col-md-4 mb-3">
+                <div class="card bg-warning text-white h-100">
+                    <div class="card-body py-5 fs-3">Tags</div>
+                    <div class=" d-flex justify-content-end me-3">
+                        <h2> <?=  $data['Tags'] ?></h2>
                     </div>
                 </div>
             </div>
-            <div class="col-md-3 mb-3">
+            <div class="col-md-4 mb-3">
                 <div class="card bg-success text-white h-100">
-                    <div class="card-body py-5">Success Card</div>
-                    <div class=" d-flex">
-
+                    <div class="card-body py-5 fs-3">Wiki</div>
+                    <div class=" d-flex justify-content-end me-3">
+                        <h2> <?=   $data['Wiki'] ?></h2>
                     </div>
                 </div>
             </div>
-            <div class="col-md-3 mb-3">
+            <!-- <div class="col-md-3 mb-3">
                 <div class="card bg-danger text-white h-100">
-                    <div class="card-body py-5">Danger Card</div>
+                    <div class="card-body py-5">Author</div>
                     <div class=" d-flex">
 
                     </div>
                 </div>
-            </div>
+            </div> -->
         </div>
-        <div class="row">
+        <!-- <div class="row">
             <div class="col-md-6 mb-3">
                 <div class="card h-100">
                     <div class="card-header">
@@ -67,7 +67,7 @@ require APPROOT . '/views/inc/sidebar.php';
                     </div>
                 </div>
             </div>
-        </div>
+        </div> -->
         <div class="row">
             <div class="col-md-12 mb-3">
                 <div class="card">
@@ -79,40 +79,40 @@ require APPROOT . '/views/inc/sidebar.php';
                             <table id="example" class="table table-striped data-table" style="width: 100%">
                                 <thead>
                                     <tr>
-                                        <th>Name</th>
-                                        <th>Position</th>
-                                        <th>Office</th>
-                                        <th>Age</th>
-                                        <th>Start date</th>
-                                        <th>Salary</th>
+                                        <th>#</th>
+                                        <th>NameTage</th>
+                                        <th>Title</th>
+                                        <th>date_Cration</th>
+                                        <th>Author</th>
+                                        <th>categorie</th>
                                     </tr>
                                 </thead>
                                 <tbody>
+                                    <?php foreach($data['statistique'] as $statistique){?>
+                                    <tr>
+                                        <td>
+                                            <?= $statistique->getID_PIVOT() ?>
+                                        </td>
+                                        <td>
+                                            <?= $statistique->getTags()->getTagName() ?>
+                                        </td>
+                                        <td>
+                                            <?= $statistique->getWiki()->getTitle()?>
+                                        </td>
+                                        <td>
+                                            <?= $statistique->getWiki()->getDateCreated()?>
+                                        </td>
+                                        <td>
+                                            <?= $statistique->getWiki()->getAuthor()->getNom()?>
+                                        </td>
+                                        <td>
+                                            <?= $statistique->getWiki()->getCategorie()->getCategoryName()?>
+                                        </td>
+                                    </tr>
+                                    <?php
+                                     }
+                                     ?>
 
-                                    <tr>
-                                        <td>Shad Decker</td>
-                                        <td>Regional Director</td>
-                                        <td>Edinburgh</td>
-                                        <td>51</td>
-                                        <td>2008/11/13</td>
-                                        <td>$183,000</td>
-                                    </tr>
-                                    <tr>
-                                        <td>Michael Bruce</td>
-                                        <td>Javascript Developer</td>
-                                        <td>Singapore</td>
-                                        <td>29</td>
-                                        <td>2011/06/27</td>
-                                        <td>$183,000</td>
-                                    </tr>
-                                    <tr>
-                                        <td>Donna Snider</td>
-                                        <td>Customer Support</td>
-                                        <td>New York</td>
-                                        <td>27</td>
-                                        <td>2011/01/25</td>
-                                        <td>$112,000</td>
-                                    </tr>
                                 </tbody>
                             </table>
                         </div>

@@ -5,6 +5,7 @@ class WikiDao{
     // `wikiID`, `title`, `content`, `image`, `dateCreated`, `status`, `ID_author`, `ID_Categorie` 
     private $db;
     private Wiki $wiki;
+       //dependency-injection construct/stters
     public function __construct(){
         $this->db = new Database();
         $this->wiki = new Wiki();
@@ -15,7 +16,7 @@ class WikiDao{
         $this->db->query($req);
         // obj
        $res= $this->db->fetchAll();
-       $Wiki=array();
+       $Post=array();
        foreach($res as $obj){
         $WIKI=new Wiki();
         $WIKI->setWikiID($obj->wikiID);
@@ -26,15 +27,15 @@ class WikiDao{
         $WIKI->setStatus($obj->status);
         $WIKI->getAuthor()->setNom($obj->nom);
         $WIKI->getCategorie()->setCategoryName($obj->Categorie);
-       array_push($Wiki,$WIKI);
+       array_push($Post,$WIKI);
        }
-       return $Wiki;
+       return $Post;
            
     }
     // ArchiveWiki
-    public function ArchiveWiki(Wiki $wiki){
+    public function ArchiveWiki(Wiki $post){
         try {
-       $idwiki= $wiki->getWikiID();
+       $idwiki= $post->getWikiID();
       
         $req="UPDATE `wiki` SET `status`=0 WHERE wikiID=:id";
         $this->db->query($req);
@@ -48,4 +49,10 @@ class WikiDao{
         }
     }
     
+
+ 
+    public function getWiki()
+    {
+        return $this->wiki;
+    }
 }

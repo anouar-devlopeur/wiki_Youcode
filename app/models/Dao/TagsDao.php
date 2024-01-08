@@ -3,6 +3,7 @@ require_once(APPROOT . '/models/Tags.php');
 class TagsDao{
     private $db;
     private Tags $tags;
+     //dependency-injection construct/stters
     public function __construct() {
         $this->db=new Database();
         $this->tags=new Tags();

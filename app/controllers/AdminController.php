@@ -1,37 +1,44 @@
 <?php
 class AdminController extends Controller
 {
-  // private $adminDao;
+  private $adminDao;
   private $categoy;
   private $tags;
   private $wiki;
+  private $tags_Wiki;
 
   public function __construct()
   {
-    // $this->adminDao =$this->model('AdminDao');
+    $this->adminDao =$this->model('AdminDao');
     $this->categoy = $this->model('CategorieDao');
     $this->tags = $this->model('TagsDao');
     $this->wiki = $this->model('WikiDao');
+    $this->tags_Wiki=$this->model('Tags_WikiDao');
   }
 
   public function index()
   {
     $data = [
       'title' => 'wiki',
+      'Catgorie'=>$this->adminDao->affiche_Statistiques('categorie'),
+      'Tags'=>$this->adminDao->affiche_Statistiques('Tags'),
+      'Wiki'=>$this->adminDao->affiche_Statistiques('Wiki'),
+      'statistique'=>$this->tags_Wiki->getAllAFFiche()
     ];
 
     $this->view('pages/Dashbord/Dashbord', $data);
   }
   // -----------------------------------Dashbord
-  public function Dashbord()
-  {
-    $data = [
-      'title' => 'wiki',
+  // public function Dashbord()
+  // {
+  //   $data = [
+  //     'title' => 'wiki',
+  //     'Catgorie'=>$this->adminDao->affiche_Statistiques('categorie')
       
-    ];
+  //   ];
 
-    $this->view('pages/Dashbord/Dashbord', $data);
-  }
+  //   $this->view('pages/Dashbord/Dashbord', $data);
+  // }
   // -----------------------------------Categorie
   public function Categorie()
   {
@@ -64,6 +71,7 @@ class AdminController extends Controller
 
     $this->view('pages/Dashbord/Wiki', $data);
   }
+  // -----------------------------------affiche_Statistiques
 
   // ------------------------------------Categorie
 // Insert Categorie

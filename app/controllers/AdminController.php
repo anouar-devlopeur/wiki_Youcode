@@ -106,6 +106,7 @@ class AdminController extends Controller
   }
   // ----------------------------fin Categorie --------------------
   // -------------------------------Tags----------------
+  // insert
   public function InsertTags()
   {
     if(isset($_POST['AddTags'])){
@@ -118,6 +119,7 @@ class AdminController extends Controller
     }
 
   }
+  // dellete
   public function DelletTags()
   {
     if(isset($_GET['id'])){
@@ -128,10 +130,24 @@ class AdminController extends Controller
         $this->tags->DelletTags($id_Tags) ;
        redirect('AdminController/Tags');
     }else{
-     echo 'hh';
-      // redirect('AdminController/Tags');
+
+      redirect('AdminController/Tags');
     }
 
+  }
+  //update 
+  public function UpdateTags(){
+    if(isset($_POST['updatetags'])){
+      $id=$_POST['id'];
+     $Tags_name=$_POST['Tags'];
+     $Tags=new Tags();
+     $Tags->setTagID($id);
+     $Tags->setTagName($Tags_name);
+     $this->tags->UpdateTags($Tags);
+     redirect('AdminController/Tags');
+    }else {
+      redirect('AdminController/Tags');
+    }
   }
   
   // -----------------------------fin tags--------------------------

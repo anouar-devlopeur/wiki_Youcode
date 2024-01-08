@@ -54,12 +54,26 @@ class TagsDao{
              $this->db->bind(":id", $Tags_id);
              $this->db->execute();
          } catch (Exception $e) {
-             // Handle the exception
-             // Log the error for debugging purposes
+           
              error_log("Error in Dellet Tags: " . $e->getMessage());
          }
      }
-     
+    //  Update 
+    public function UpdateTags(Tags $tags){
+        try {
+            $Tags_id = $tags->getTagID(); 
+            $tags_name =$tags->getTagName(); 
+            $req = "UPDATE `tags` SET tagName=:name WHERE tagID = :id";
+            $this->db->query($req);
+            $this->db->bind(":id", $Tags_id);
+            $this->db->bind(":name", $tags_name); 
+            $this->db->execute();
+        } catch (Exception $e) {
+         
+            error_log("Error in Update Tags: " . $e->getMessage());
+        }
+    }
+    
  
 
     /**

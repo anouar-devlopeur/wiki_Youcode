@@ -1,6 +1,6 @@
 <?php
 
-  // print_r();
+
 class Pages extends Controller {
   
     public function __construct() {

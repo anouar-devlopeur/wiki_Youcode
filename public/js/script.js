@@ -60,3 +60,15 @@ for (let i = 0; i < update_btn.length; i++) {
        
     });
 }
+//update Tags
+const update_Tags=document.querySelectorAll(".update_tags");
+const Tags_id=document.querySelector("#idTags");
+const Tags_NAME=document.querySelector("#Tags");
+for(let i=0;i<update_Tags.length;i++){
+  // arryfunction
+  update_Tags[i].addEventListener("click",()=>{
+     console.log( update_Tags[i].getAttribute("data-key"));
+     Tags_id.value=update_Tags[i].getAttribute("data-key");
+     Tags_NAME.value=update_Tags[i].getAttribute("value");
+  })
+}

@@ -75,15 +75,16 @@ require APPROOT . '/views/inc/sidebar.php';
                                                 </td>
 
                                                 <td>
-                                                    <a class="update-btn" type="button" data-bs-toggle="modal"
+                                                    <a class="update_tags" type="button" data-bs-toggle="modal"
+                                                        value="<?= $tags->getTagName() ?>"
+                                                        data-key="<?= $tags->getTagID() ?>"
                                                         data-bs-target="#updateGenreModal" data-bs-whatever="@mdo">
                                                         <i class="btn btn-primary far fa-pen"></i>
-                                                    </a>
 
-                                                    <a
-                                                        href="<?= URLROOT ?>/AdminController/DelletTags?id=<?= $tags->getTagID() ?>"><i
-                                                            class="btn btn-danger far fa-trash"></i>
-                                                    </a>
+                                                        <a
+                                                            href="<?= URLROOT ?>/AdminController/DelletTags?id=<?= $tags->getTagID() ?>"><i
+                                                                class="btn btn-danger ms-1 far fa-trash"></i>
+                                                        </a>
                                                 </td>
                                             </tr>
                                             <?php 
@@ -112,11 +113,11 @@ require APPROOT . '/views/inc/sidebar.php';
                                     aria-label="Close"></button>
                             </div>
                             <div class="modal-body">
-                                <form method="POST" action="<?= URLROOT ?>/DashbordControler/UpdateTags"
+                                <form method="POST" action="<?= URLROOT ?>/AdminController/UpdateTags"
                                     enctype="multipart/form-data">
                                     <div class="mb-3">
-                                        <label for="genre" class="col-form-label">Tags:</label>
-                                        <input id="id" type="hidden" class="form-control" name="id">
+                                        <label for="Tags" class="col-form-label">Tags:</label>
+                                        <input id="idTags" type="hidden" class="form-control" name="id">
                                         <input id="Tags" type="text" class="form-control" name="Tags">
                                     </div>
 
@@ -125,7 +126,7 @@ require APPROOT . '/views/inc/sidebar.php';
                                     <div class="modal-footer">
                                         <button type="button" class="btn btn-secondary"
                                             data-bs-dismiss="modal">Close</button>
-                                        <button type="submit" name="updategenre" class="btn btn-primary">Update
+                                        <button type="submit" name="updatetags" class="btn btn-primary">Update
                                             Tags</button>
                                     </div>
                                 </form>

@@ -4,7 +4,7 @@
             <ul class="navbar-nav" style=" height: 80vh;">
 
                 <li style=" margin-top:10%" class="btn bg-dark">
-                    <a href="<?= URLROOT ?>/AdminController/Dashbord" class="nav-link px-3 active">
+                    <a href="<?= URLROOT ?>/AdminController" class="nav-link px-3 active">
                         <span class="me-2"><i class="bi bi-speedometer2"></i></span>
                         <span>Dashboard</span>
                     </a>

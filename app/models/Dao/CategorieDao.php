@@ -27,7 +27,6 @@ class CategorieDao
             return $categorie;
         } catch (Exception $e) {
             // Handle the exception
-            // Log the error for debugging purposes
             error_log("Error in getAllCat: " . $e->getMessage());
 
         }
@@ -44,31 +43,46 @@ class CategorieDao
             $this->db->execute();
         } catch (Exception $e) {
             // Handle the exception
-            // Log the error for debugging purposes
-            error_log("Error in getAllCat: " . $e->getMessage());
+            error_log("Error in Insert: " . $e->getMessage());
 
         }
 
     }
-    // delete
-    public function DelletCategorie($id)
+    // Update 
+    public function UpdateCategorie(Categorie $categorie)
     {
         try {
+            $categorie_id=$categorie->getCategoryID();
+            $categorie_name=$categorie->getCategoryName();
+            $req = "UPDATE categorie SET categoryName=:name WHERE categoryID= :id";
+            $this->db->query($req);
+            $this->db->bind(":id", $categorie_id);
+            $this->db->bind(":name", $categorie_name);
+            $this->db->execute();
+        } catch (Exception $e) {
+            // Handle the exception
+            error_log("Error in update: " . $e->getMessage());
+
+        }
+    }
+    // delete
+    public function DelletCategorie(Categorie $categorie)
+    {
+        try {
+            $categorie_id=$categorie->getCategoryID();
             $req = "DELETE FROM `categorie` WHERE categoryID= :id";
             $this->db->query($req);
-            $this->db->bind(":id", $id);
+            $this->db->bind(":id", $categorie_id);
             $this->db->execute();
         } catch (Exception $e) {
             // Handle the exception
             // Log the error for debugging purposes
-            error_log("Error in getAllCat: " . $e->getMessage());
+            error_log("Error in Dellet: " . $e->getMessage());
 
         }
     }
 
-    /**
-     * Get the value of category
-     */ 
+   
     public function getCategory()
     {
         return $this->category;

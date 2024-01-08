@@ -56,7 +56,7 @@ require APPROOT . '/views/inc/sidebar.php';
                             </div>
                             <div class="card-body">
                                 <div class="table-responsive">
-                                    <table id="example" class="table table-striped data-table" style="width: 100%">
+                                    <table class="table table-striped data-table" style="width: 100%">
                                         <thead>
                                             <tr>
                                                 <th>#</th>
@@ -75,7 +75,9 @@ require APPROOT . '/views/inc/sidebar.php';
                                                 </td>
 
                                                 <td>
-                                                    <a class="update-btn" type="button" data-bs-toggle="modal"
+                                                    <a class="update_btn" type="button" data-bs-toggle="modal"
+                                                        value="<?= $cat->getCategoryName() ?>"
+                                                        data-key="<?= $cat->getCategoryID() ?>"
                                                         data-bs-target="#updateGenreModal" data-bs-whatever="@mdo">
                                                         <i class="btn btn-primary far fa-pen"></i>
                                                     </a>
@@ -109,11 +111,11 @@ require APPROOT . '/views/inc/sidebar.php';
                                     aria-label="Close"></button>
                             </div>
                             <div class="modal-body">
-                                <form method="POST" action="<?= URLROOT ?>/DashbordControler/UpdateCategorie"
+                                <form method="POST" action="<?= URLROOT ?>/AdminController/UpdateCategorie"
                                     enctype="multipart/form-data">
                                     <div class="mb-3">
-                                        <label for="genre" class="col-form-label">Categorie:</label>
-                                        <input id="id" type="hidden" class="form-control" name="id">
+                                        <label for="Categorie" class="col-form-label">Categorie:</label>
+                                        <input id="idCategorie" type="hidden" class="form-control" name="id">
                                         <input id="Categorie" type="text" class="form-control" name="Categorie">
                                     </div>
 
@@ -122,7 +124,7 @@ require APPROOT . '/views/inc/sidebar.php';
                                     <div class="modal-footer">
                                         <button type="button" class="btn btn-secondary"
                                             data-bs-dismiss="modal">Close</button>
-                                        <button type="submit" name="updategenre" class="btn btn-primary">Update
+                                        <button type="submit" name="updateCat" class="btn btn-primary">Update
                                             Categorie</button>
                                     </div>
                                 </form>

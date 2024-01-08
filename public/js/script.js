@@ -40,8 +40,23 @@ charts.forEach(function (chart) {
   });
 });
 
-$(document).ready(function () {
-  $(".data-table").each(function (_, table) {
-    $(table).DataTable();
-  });
-});
+
+
+// update Catagorie 
+const update_btn = document.querySelectorAll(".update_btn");
+const Catagorie_id = document.querySelector("#idCategorie");
+const Catagorie_input = document.querySelector("#Categorie");
+// const Parol = document.querySelector("#msg");
+
+for (let i = 0; i < update_btn.length; i++) {
+  update_btn[i].addEventListener("click", () => {
+   
+        console.log(update_btn[i].dataset.key);
+        console.log(update_btn[i].getAttribute("value"));
+
+        Catagorie_id.value = update_btn[i].dataset.key;
+        Catagorie_input.value = update_btn[i].getAttribute("value");
+
+       
+    });
+}

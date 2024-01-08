@@ -43,7 +43,7 @@ class CategorieDao
             $this->db->execute();
         } catch (Exception $e) {
             // Handle the exception
-            error_log("Error in Insert: " . $e->getMessage());
+            error_log("Error in Insert cat: " . $e->getMessage());
 
         }
 
@@ -61,7 +61,7 @@ class CategorieDao
             $this->db->execute();
         } catch (Exception $e) {
             // Handle the exception
-            error_log("Error in update: " . $e->getMessage());
+            error_log("Error in update cat: " . $e->getMessage());
 
         }
     }
@@ -77,7 +77,7 @@ class CategorieDao
         } catch (Exception $e) {
             // Handle the exception
             // Log the error for debugging purposes
-            error_log("Error in Dellet: " . $e->getMessage());
+            error_log("Error in Dellet cat: " . $e->getMessage());
 
         }
     }

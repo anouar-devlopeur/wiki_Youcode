@@ -51,10 +51,10 @@ const Catagorie_input = document.querySelector("#Categorie");
 for (let i = 0; i < update_btn.length; i++) {
   update_btn[i].addEventListener("click", () => {
    
-        console.log(update_btn[i].dataset.key);
-        console.log(update_btn[i].getAttribute("value"));
-
-        Catagorie_id.value = update_btn[i].dataset.key;
+        // console.log(update_btn[i].dataset.key);
+        console.log(update_btn[i].getAttribute("data-key"));
+// You can access these data attributes data-key or data-name .. using the dataset
+        Catagorie_id.value = update_btn[i].getAttribute("data-key");
         Catagorie_input.value = update_btn[i].getAttribute("value");
 
        

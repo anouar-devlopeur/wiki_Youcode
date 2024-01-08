@@ -7,7 +7,7 @@ require APPROOT . '/views/inc/sidebar.php';
     <div class="main mt-2">
 
 
-        <!--=========================Modal====================-->
+        <!--=========================Modal insert====================-->
 
         <div class="button-add-student float-end me-4">
             <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal"
@@ -22,17 +22,17 @@ require APPROOT . '/views/inc/sidebar.php';
                             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                         </div>
                         <div class="modal-body">
-                            <form method="POST" action="<?= URLROOT ?>/DashbordControler/AddGenre"
+                            <form method="POST" action="<?= URLROOT ?>/AdminController/InsertTags"
                                 enctype="multipart/form-data">
                                 <div class="mb-3">
-                                    <label for="Genre" class="col-form-label">Tags:</label>
-                                    <input type="text" class="form-control" name="Genre" required>
+                                    <label for="Tags" class="col-form-label">Tags:</label>
+                                    <input type="text" class="form-control" name="tags" required>
                                 </div>
 
                                 <div class="modal-footer">
                                     <button type="button" class="btn btn-secondary"
                                         data-bs-dismiss="modal">Close</button>
-                                    <button type="submit" name="submit" class="btn btn-primary">Add Tags</button>
+                                    <button type="submit" name="AddTags" class="btn btn-primary">Add Tags</button>
                                 </div>
                             </form>
                         </div>
@@ -65,10 +65,14 @@ require APPROOT . '/views/inc/sidebar.php';
                                             </tr>
                                         </thead>
                                         <tbody>
-
+                                            <?php foreach($data['Tags'] as $tags){ ?>
                                             <tr>
-                                                <td>Shad Decker</td>
-                                                <td>Regional Director</td>
+                                                <td>
+                                                    <?= $tags->getTagID() ?>
+                                                </td>
+                                                <td>
+                                                    <?= $tags->getTagName() ?>
+                                                </td>
 
                                                 <td>
                                                     <a class="update-btn" type="button" data-bs-toggle="modal"
@@ -76,9 +80,15 @@ require APPROOT . '/views/inc/sidebar.php';
                                                         <i class="btn btn-primary far fa-pen"></i>
                                                     </a>
 
-                                                    <a href=""><i class="btn btn-danger far fa-trash"></i></a>
+                                                    <a
+                                                        href="<?= URLROOT ?>/AdminController/DelletTags?id=<?= $tags->getTagID() ?>"><i
+                                                            class="btn btn-danger far fa-trash"></i>
+                                                    </a>
                                                 </td>
                                             </tr>
+                                            <?php 
+                                            }
+                                            ?>
                                         </tbody>
                                     </table>
                                 </div>

@@ -3,11 +3,12 @@ class AdminController extends Controller
 {
   // private $adminDao;
   private $categoy;
+  private $tags;
   public function __construct()
   {
     // $this->adminDao =$this->model('AdminDao');
     $this->categoy = $this->model('CategorieDao');
-
+    $this->tags = $this->model('TagsDao');
   }
 
   public function index()
@@ -43,6 +44,7 @@ class AdminController extends Controller
   {
     $data = [
       'title' => 'Tags',
+      'Tags' => $this->tags->getAllTags()
 
     ];
 
@@ -102,6 +104,37 @@ class AdminController extends Controller
 
     }
   }
+  // ----------------------------fin Categorie --------------------
+  // -------------------------------Tags----------------
+  public function InsertTags()
+  {
+    if(isset($_POST['AddTags'])){
+     $tags=$_POST['tags'];
+     $Tags=new Tags();
+       $this->tags->InsertTags($Tags->setTagName($tags)) ;
+       redirect('AdminController/Tags');
+    }else{
+      redirect('AdminController/Tags');
+    }
+
+  }
+  public function DelletTags()
+  {
+    if(isset($_GET['id'])){
+     $tags_id=$_GET['id'];
+     $id_Tags=$this->tags->getTags()->setTagID($tags_id);
+    //  var_dump($id_Tags);
+    //  echo $id_Tags;
+        $this->tags->DelletTags($id_Tags) ;
+       redirect('AdminController/Tags');
+    }else{
+     echo 'hh';
+      // redirect('AdminController/Tags');
+    }
+
+  }
+  
+  // -----------------------------fin tags--------------------------
   // ______________________Log Out----------------
   public function logout()
   {

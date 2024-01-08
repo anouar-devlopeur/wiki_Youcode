@@ -79,4 +79,54 @@ class Wiki{
 
         return $this;
     }
+
+    /**
+     * Get the value of dateCreated
+     */ 
+    public function getDateCreated()
+    {
+        return $this->dateCreated;
+    }
+
+  
+    public function setDateCreated($dateCreated)
+    {
+        $this->dateCreated = $dateCreated;
+
+        return $this;
+    }
+
+    /**
+     * Get the value of status
+     */ 
+    public function getStatus()
+    {
+        return $this->status;
+    }
+
+   
+    public function setStatus($status)
+    {
+        $this->status = $status;
+
+        return $this;
+    }
+
+    /**
+     * Get the value of categorie
+     */ 
+    public function getCategorie()
+    {
+        return $this->categorie;
+    }
+
+   
+
+    /**
+     * Get the value of Author
+     */ 
+    public function getAuthor()
+    {
+        return $this->Author;
+    }
 }

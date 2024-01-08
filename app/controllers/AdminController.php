@@ -4,11 +4,14 @@ class AdminController extends Controller
   // private $adminDao;
   private $categoy;
   private $tags;
+  private $wiki;
+
   public function __construct()
   {
     // $this->adminDao =$this->model('AdminDao');
     $this->categoy = $this->model('CategorieDao');
     $this->tags = $this->model('TagsDao');
+    $this->wiki = $this->model('WikiDao');
   }
 
   public function index()
@@ -24,6 +27,7 @@ class AdminController extends Controller
   {
     $data = [
       'title' => 'wiki',
+      
     ];
 
     $this->view('pages/Dashbord/Dashbord', $data);
@@ -55,6 +59,7 @@ class AdminController extends Controller
   {
     $data = [
       'title' => 'Wiki',
+      'Wiki'=>$this->wiki->getAllWiki()
     ];
 
     $this->view('pages/Dashbord/Wiki', $data);

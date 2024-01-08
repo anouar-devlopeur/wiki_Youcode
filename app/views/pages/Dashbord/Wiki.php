@@ -37,45 +37,47 @@ require APPROOT . '/views/inc/sidebar.php';
                                             </tr>
                                         </thead>
                                         <tbody>
-                                            <!-- <?php foreach($data['Tags'] as $tags){ ?> -->
+                                            <!-- <?php foreach($data['Wiki'] as $Wiki){ ?> -->
                                             <tr>
                                                 <td>
-                                                    <!-- <?= $tags->getTagID() ?> -->
+                                                    <?= $Wiki->getWikiID() ?>
                                                 </td>
                                                 <td>
-                                                    <!-- <?= $tags->getTagName() ?> -->
+                                                    <?= $Wiki->getTitle() ?>
                                                 </td>
                                                 <td>
-                                                    <!-- <?= $tags->getTagID() ?> -->
+                                                    <?= $Wiki->getContent() ?>
                                                 </td>
                                                 <td>
-                                                    <!-- <?= $tags->getTagName() ?> -->
+                                                    <img src="data:image/jpg;charset=utf8;base64,<?php echo base64_encode( $Wiki->getImage()); ?>"
+                                                        style="width: 100px; border-radius: 10px;" />
+
                                                 </td>
                                                 <td>
-                                                    <!-- <?= $tags->getTagID() ?> -->
+                                                    <?= $Wiki->getDateCreated() ?>
                                                 </td>
                                                 <td>
-                                                    <!-- <?= $tags->getTagName() ?> -->
+                                                    <?= $Wiki->getStatus() ?>
                                                 </td>
                                                 <td>
-                                                    <!-- <?= $tags->getTagID() ?> -->
+                                                    <?= $Wiki->getAuthor()->getNom() ?>
                                                 </td>
                                                 <td>
-                                                    <!-- <?= $tags->getTagName() ?> -->
+                                                    <?= $Wiki->getCategorie()->getCategoryName() ?>
                                                 </td>
 
 
                                                 <td>
-                                                    <!-- <a class="update_tags" type="button" data-bs-toggle="modal"
-                                                        value="<?= $tags->getTagName() ?>"
-                                                        data-key="<?= $tags->getTagID() ?>"
+                                                    <a class="update_Wiki" type="button" data-bs-toggle="modal"
+                                                        value="<?= $Wiki->getContent() ?>"
+                                                        data-key="<?= $Wiki->getWikiID() ?>"
                                                         data-bs-target="#updateGenreModal" data-bs-whatever="@mdo">
                                                         <i class="btn btn-primary far fa-pen"></i>
 
                                                         <a
-                                                            href="<?= URLROOT ?>/AdminController/DelletTags?id=<?= $tags->getTagID() ?>"><i
+                                                            href="<?= URLROOT ?>/AdminController/DelletTags?id=<?= $Wiki->getWikiID() ?>"><i
                                                                 class="btn btn-danger ms-1 far fa-trash"></i>
-                                                        </a> -->
+                                                        </a>
                                                 </td>
                                             </tr>
                                             <?php 
@@ -99,7 +101,7 @@ require APPROOT . '/views/inc/sidebar.php';
                     <div class="modal-dialog">
                         <div class="modal-content">
                             <div class="modal-header">
-                                <h5 class="modal-title" id="updateGenreModalModalLabel">Upadte Tags</h5>
+                                <h5 class="modal-title" id="updateGenreModalModalLabel">Archive Wiki</h5>
                                 <button type="button" class="btn-close" data-bs-dismiss="modal"
                                     aria-label="Close"></button>
                             </div>
@@ -107,9 +109,9 @@ require APPROOT . '/views/inc/sidebar.php';
                                 <form method="POST" action="<?= URLROOT ?>/AdminController/UpdateTags"
                                     enctype="multipart/form-data">
                                     <div class="mb-3">
-                                        <label for="Tags" class="col-form-label">Tags:</label>
-                                        <input id="idTags" type="hidden" class="form-control" name="id">
-                                        <input id="Tags" type="text" class="form-control" name="Tags">
+                                        <label for="Wiki" class="col-form-label">Wiki:</label>
+                                        <input id="idTagsWiki" type="hidden" class="form-control" name="id">
+                                        <textarea id="Wiki" type="text" class="form-control" name="Wiki"></textarea>
                                     </div>
 
 
@@ -117,8 +119,8 @@ require APPROOT . '/views/inc/sidebar.php';
                                     <div class="modal-footer">
                                         <button type="button" class="btn btn-secondary"
                                             data-bs-dismiss="modal">Close</button>
-                                        <button type="submit" name="updatetags" class="btn btn-primary">Update
-                                            Tags</button>
+                                        <button type="submit" name="updatetags" class="btn btn-primary">Archive
+                                            Wiki</button>
                                     </div>
                                 </form>
                             </div>

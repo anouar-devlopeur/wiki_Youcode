@@ -96,12 +96,12 @@ class AdminController extends Controller
   }
   // Delete Categorie:
 
-  public function DelletCategorie()
+  public function DeleteCategorie()
   {
     if (isset($_GET['id'])) {
       $id = $_GET['id'];
       $idCategory = $this->categoy->getCategory()->setCategoryID($id);
-      $this->categoy->DelletCategorie($idCategory);
+      $this->categoy->DeleteCategorie($idCategory);
 
       redirect('AdminController/Categorie');
     } else {
@@ -125,14 +125,14 @@ class AdminController extends Controller
 
   }
   // dellete
-  public function DelletTags()
+  public function DeleteTags()
   {
     if(isset($_GET['id'])){
      $tags_id=$_GET['id'];
      $id_Tags=$this->tags->getTags()->setTagID($tags_id);
     //  var_dump($id_Tags);
     //  echo $id_Tags;
-        $this->tags->DelletTags($id_Tags) ;
+        $this->tags->DeleteTags($id_Tags) ;
        redirect('AdminController/Tags');
     }else{
 
@@ -156,6 +156,19 @@ class AdminController extends Controller
   }
   
   // -----------------------------fin tags--------------------------
+  // ------------------------------- wiki --------------
+  public function ArchiveWiki(){
+    if (isset($_POST['Archive'])) {
+      $idWiki = $_POST['id'];
+ 
+      $post = new Wiki();
+       $post->setWikiID($idWiki);
+      $this->wiki->ArchiveWiki($post); 
+      redirect('AdminController/Wiki');
+  } else {
+      redirect('AdminController/Wiki');
+  }
+  }
   // ______________________Log Out----------------
   public function logout()
   {

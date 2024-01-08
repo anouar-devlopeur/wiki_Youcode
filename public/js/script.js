@@ -72,3 +72,15 @@ for(let i=0;i<update_Tags.length;i++){
      Tags_NAME.value=update_Tags[i].getAttribute("value");
   })
 }
+// Arrchive Wiki
+const Archive_Wiki=document.querySelectorAll(".Archive_Wiki");
+const idWiki=document.querySelector("#idWiki");
+const content=document.querySelector("#content");
+for(let i=0;i<Archive_Wiki.length;i++){
+  // arryfunction
+  Archive_Wiki[i].addEventListener("click",()=>{
+     console.log( Archive_Wiki[i].getAttribute("data-key"));
+     idWiki.value=Archive_Wiki[i].getAttribute("data-key");
+     content.value=Archive_Wiki[i].getAttribute("value");
+  })
+}

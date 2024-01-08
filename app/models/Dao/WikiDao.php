@@ -31,5 +31,21 @@ class WikiDao{
        return $Wiki;
            
     }
+    // ArchiveWiki
+    public function ArchiveWiki(Wiki $wiki){
+        try {
+       $idwiki= $wiki->getWikiID();
+      
+        $req="UPDATE `wiki` SET `status`=0 WHERE wikiID=:id";
+        $this->db->query($req);
+        $this->db->bind(':id',$idwiki);
+       $res= $this->db->execute();
+    //    var_dump($res);
+        }
+        catch(Exception $e){
+            error_log("Error in Archines wiki: " . $e->getMessage());
+ 
+        }
+    }
     
 }

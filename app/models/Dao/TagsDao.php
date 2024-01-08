@@ -45,7 +45,7 @@ class TagsDao{
 
     }
      // delete
-     public function DelletTags(Tags $tags)
+     public function DeleteTags(Tags $tags)
      {
          try {
              $Tags_id = $tags->getTagID();  

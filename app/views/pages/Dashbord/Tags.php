@@ -82,7 +82,7 @@ require APPROOT . '/views/inc/sidebar.php';
                                                         <i class="btn btn-primary far fa-pen"></i>
 
                                                         <a
-                                                            href="<?= URLROOT ?>/AdminController/DelletTags?id=<?= $tags->getTagID() ?>"><i
+                                                            href="<?= URLROOT ?>/AdminController/DeleteTags?id=<?= $tags->getTagID() ?>"><i
                                                                 class="btn btn-danger ms-1 far fa-trash"></i>
                                                         </a>
                                                 </td>

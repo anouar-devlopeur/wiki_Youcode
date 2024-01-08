@@ -83,7 +83,7 @@ require APPROOT . '/views/inc/sidebar.php';
                                                     </a>
 
                                                     <a
-                                                        href="<?= URLROOT ?>/AdminController/DelletCategorie?id=<?= $cat->getCategoryID() ?>"><i
+                                                        href="<?= URLROOT ?>/AdminController/DeletCategorie?id=<?= $cat->getCategoryID() ?>"><i
                                                             class="btn btn-danger far fa-trash"></i></a>
                                                 </td>
                                             </tr>

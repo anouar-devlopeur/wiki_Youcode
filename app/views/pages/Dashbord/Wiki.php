@@ -37,7 +37,7 @@ require APPROOT . '/views/inc/sidebar.php';
                                             </tr>
                                         </thead>
                                         <tbody>
-                                            <!-- <?php foreach($data['Wiki'] as $Wiki){ ?> -->
+                                            <?php foreach($data['Wiki'] as $Wiki){ ?>
                                             <tr>
                                                 <td>
                                                     <?= $Wiki->getWikiID() ?>
@@ -68,7 +68,7 @@ require APPROOT . '/views/inc/sidebar.php';
 
 
                                                 <td>
-                                                    <a class="update_Wiki btn btn-primary" type="button"
+                                                    <a class="Archive_Wiki btn btn-primary" type="button"
                                                         data-bs-toggle="modal" value="<?= $Wiki->getContent() ?>"
                                                         data-key="<?= $Wiki->getWikiID() ?>"
                                                         data-bs-target="#updateGenreModal" data-bs-whatever="@mdo">
@@ -79,10 +79,7 @@ require APPROOT . '/views/inc/sidebar.php';
                                                                 d="M10.97 4.97a.75.75 0 0 1 1.07 1.05l-3.99 4.99a.75.75 0 0 1-1.08.02L4.324 8.384a.75.75 0 1 1 1.06-1.06l2.094 2.093 3.473-4.425z" />
                                                         </svg>
 
-                                                        <a
-                                                            href="<?= URLROOT ?>/AdminController/DelletTags?id=<?= $Wiki->getWikiID() ?>"><i
-                                                                class="btn btn-danger ms-1 far fa-trash"></i>
-                                                        </a>
+
                                                 </td>
                                             </tr>
                                             <?php 
@@ -111,12 +108,13 @@ require APPROOT . '/views/inc/sidebar.php';
                                     aria-label="Close"></button>
                             </div>
                             <div class="modal-body">
-                                <form method="POST" action="<?= URLROOT ?>/AdminController/UpdateTags"
+                                <form method="POST" action="<?= URLROOT ?>/AdminController/ArchiveWiki"
                                     enctype="multipart/form-data">
                                     <div class="mb-3">
                                         <label for="Wiki" class="col-form-label">Content:</label>
-                                        <input id="idTagsWiki" type="hidden" class="form-control" name="id">
-                                        <textarea id="Wiki" type="text" class="form-control" name="Wiki"></textarea>
+                                        <input id="idWiki" type="hidden" class="form-control" name="id">
+                                        <textarea id="content" type="text" class="form-control" name="Wiki"
+                                            disabled></textarea>
                                     </div>
 
 
@@ -124,7 +122,7 @@ require APPROOT . '/views/inc/sidebar.php';
                                     <div class="modal-footer">
                                         <button type="button" class="btn btn-secondary"
                                             data-bs-dismiss="modal">Close</button>
-                                        <button type="submit" name="updatetags" class="btn btn-primary">Archive
+                                        <button type="submit" name="Archive" class="btn btn-primary">Archive
                                             Wiki</button>
                                     </div>
                                 </form>

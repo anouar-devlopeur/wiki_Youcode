@@ -65,8 +65,8 @@ class CategorieDao
 
         }
     }
-    // delete
-    public function DelletCategorie(Categorie $categorie)
+    //delete
+    public function DeletCategorie(Categorie $categorie)
     {
         try {
             $categorie_id=$categorie->getCategoryID();

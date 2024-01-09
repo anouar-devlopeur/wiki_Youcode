@@ -8,4 +8,28 @@ class AuthorDao extends User{
         $this->db=new Database();
     }
     
+    public function Register(User $user) {
+        $name = $user->getNom();
+        $email = $user->getEmail();
+        $pass = $user->getPassword();
+        $img = $user->getIMAGE();
+    
+        // Hash the password
+        $hashedPassword = password_hash($pass, PASSWORD_DEFAULT);
+    
+        $req = "INSERT INTO user(email, IMAGE, password, nom) VALUES (:email, :image, :password, :nom)";
+        
+        $this->db->query($req);
+        $this->db->bind(':email', $email);
+        $this->db->bind(':password', $hashedPassword);
+        $this->db->bind(':image', $img);
+        $this->db->bind(':nom', $name);
+    
+        // Execute the query
+        $res = $this->db->execute();
+    
+        return $res;
+    }
+    
+    
 }

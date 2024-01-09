@@ -32,7 +32,8 @@ if($data['title']==''){
                 <span class="navbar-toggler-icon" data-bs-target="#sidebar"></span>
             </button>
             <a class="navbar-brand me-auto ms-lg-0 ms-3 text-uppercase fw-bold" href="#"><strong
-                    class="fs-4">WIKI</strong></a>
+                    class="fs-4">WIKI<sup><b>new</b></sup>
+                </strong></a>
 
 
         </div>

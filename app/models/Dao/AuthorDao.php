@@ -16,7 +16,7 @@ class AuthorDao extends User{
     
         // Hash the password
         $hashedPassword = password_hash($pass, PASSWORD_DEFAULT);
-    
+        if($this->verifyUserByEmail($email) == true){
         $req = "INSERT INTO user(email, IMAGE, password, nom) VALUES (:email, :image, :password, :nom)";
         
         $this->db->query($req);
@@ -26,9 +26,44 @@ class AuthorDao extends User{
         $this->db->bind(':nom', $name);
     
         // Execute the query
-        $res = $this->db->execute();
+     $this->db->execute();
     
-        return $res;
+        return true; } else {
+            return false;
+        }
+    }
+  
+
+    public function verifyUser(User $user)
+    {
+        $email = $user->getEmail();
+        $pass = $user->getPassword();
+    
+        $this->db->query("SELECT * FROM user WHERE email = :email");
+        $this->db->bind(':email', $email);
+    
+        $result = $this->db->single(); 
+    
+        if ($this->db->rowCount() > 0 && password_verify($pass, $result->password)) {
+            return $result; 
+        } else {
+            return false; 
+        }
+    }
+    
+    public function verifyUserByEmail($email)
+    {
+        $this->db->query("SELECT * FROM user WHERE email = :email");
+        $this->db->bind(':email', $email);
+     
+        $result = $this->db->single(); 
+     
+        if ($result == false) {
+            return true;
+        }else{
+             
+            return false;
+        }
     }
     
     

@@ -21,17 +21,17 @@ require APPROOT . '/views/inc/HeaderHome.php'; ?>
 </nav>
 <!-- section register -->
 <div class=" mb-2 w-75 mx-auto" style="background-color: #eee;">
-    <!-- Card -->
+
     <div class="card my-3  border border-dark" style=" width:100%">
 
-        <!-- Card body -->
+
         <div class="card-body">
 
-            <!-- Material form register -->
+
             <form method="POST" action="<?= URLROOT ?>/UserController/Register_Author" enctype="multipart/form-data">
                 <p class="h2 text-center  py-2">Sign up</p>
 
-                <!-- Material input text -->
+
 
                 <div class="md-form my-3">
                     <div class="mb-2">
@@ -124,33 +124,34 @@ require APPROOT . '/views/inc/HeaderHome.php'; ?>
                     <button class="btn btn-dark w-50" name="AddRegister" type="submit">Register</button>
                 </div>
             </form>
-            <h1>
-                <?php 
-                if(isset($_SESSION['succes'])) {
-                    echo $_SESSION['succes'];
-                    unset($_SESSION['succes']);
-                }
-                 ?>
-            </h1>
 
-            <!-- Material form register -->
+            <?php 
+                if(isset($_SESSION['succes'])) {?>
+            <h3 class="alert alert-success text-center" role="alert">
+                <?php  echo $_SESSION['succes'];
+                unset($_SESSION['succes']);
+                }
+                if(isset($_SESSION['Error'])){
+                  ?>
+                <h3 class="alert alert-danger text-center" role="alert">
+                    <?php    echo $_SESSION['Error'];
+                     unset($_SESSION['Error']);
+                   }
+                    ?>
+                </h3>
+
+
 
         </div>
-        <!-- Card body -->
+
 
     </div>
-    <!-- Card -->
+
 </div>
 <!-- Footer-->
 <footer class="py-5 bg-dark">
     <div class="container">
         <p class="m-0 text-center text-white">WIKI &copy; 2024</p>
     </div>
-</footer>
-<!-- Bootstrap core JS-->
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
-<!-- Core theme JS-->
-<script src="js/scripts.js"></script>
-</body>
-
-</html>
+</footer><?php
+require APPROOT . '/views/inc/footerHome.php'; ?>

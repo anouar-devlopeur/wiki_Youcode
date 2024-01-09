@@ -6,7 +6,7 @@
      $this->Author=$this->model('AuthorDao');
   
       }
-      // UserController/register
+     
       
       public function index() {
         $data = [
@@ -72,10 +72,16 @@ public function Register_Author() {
           $user->setEmail($email);
           $user->setPassword($password);
           $user->setIMAGE($imageContent);
-
-          $this->Author->Register($user);
-          $_SESSION['succes']="Inscription Success ";
-          redirect('UserController/register');
+          if($this->Author->Register($user)){
+            $_SESSION['succes']="Inscription Success ";
+            redirect('UserController/register');
+          }
+          else{
+            $_SESSION['Error']="on Compte deja creer !! ";
+            redirect('UserController/register');
+          }
+         
+       
       } else {
          $data=[
           'error_Nom' => $error_Nom,

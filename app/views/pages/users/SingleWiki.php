@@ -13,6 +13,7 @@ require APPROOT . '/views/inc/HeaderHome.php'; ?>
                 <li class="nav-item"><a class="nav-link active" href="#">Home</a></li>
                 <li class="nav-item"><a class="nav-link" href="#!">SignUp</a></li>
                 <li class="nav-item"><a class="nav-link" href="#!">Login</a></li>
+                <li class="nav-item"><a class="nav-link" href="#!">LogOut</a></li>
                 <!-- <li class="nav-item"><a class="nav-link " aria-current="page" href="#">Blog</a></li> -->
             </ul>
         </div>
@@ -22,48 +23,7 @@ require APPROOT . '/views/inc/HeaderHome.php'; ?>
 <!-- Page content-->
 <div class="container mt-2 ">
 
-
-    <div class=" row">
-
-
-
-        <!-- Blog post-->
-        <div class="col-md-3  ">
-            <div class="card mb-4 w-100 ">
-                <a href="#!"><img class="card-img-top" src="https://dummyimage.com/700x350/dee2e6/6c757d.jpg"
-                        alt="..." /></a>
-                <div class="card-body">
-                    <div class="small text-muted">January 1, 2023</div>
-                    <h2 class="card-title h4">Post Title</h2>
-                    <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-                        Reiciendis aliquid atque, nulla.</p>
-                    <!-- <a class="btn btn-primary" href="#!">Read more →</a> -->
-                </div>
-            </div>
-
-        </div>
-
-        <!-- <div class="col-md-3 card mb-4  w-* ">
-            <a href="#!"><img class="card-img-top" src="https://dummyimage.com/700x350/dee2e6/6c757d.jpg"
-                    alt="..." /></a>
-            <div class="card-body">
-                <div class="small text-muted">January 1, 2023</div>
-                <h2 class="card-title h4">Post Title</h2>
-                <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-                    Reiciendis aliquid atque, nulla.</p>
-                <a class="btn btn-primary" href="#!">Read more →</a>
-            </div>-->
-
-
-    </div>
-
-    <!-- </div> -->
-
-
-
-
-
-</div>
+    single
 </div>
 <?php
 require APPROOT . '/views/inc/footerHome.php'; ?>

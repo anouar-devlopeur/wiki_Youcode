@@ -15,7 +15,7 @@ class AdminDao extends User
             $this->db->query($req);
             $result = $this->db->single();
     
-            return $result['count'];
+            return $result->count;
         } catch (Exception $e) {
             // Handle the exception or log the error
             error_log("Error in Admin affiche_Statistiques: " . $e->getMessage());

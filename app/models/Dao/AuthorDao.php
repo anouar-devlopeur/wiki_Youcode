@@ -41,11 +41,13 @@ class AuthorDao extends User{
     
         $this->db->query("SELECT * FROM user WHERE email = :email");
         $this->db->bind(':email', $email);
-    
+       
         $result = $this->db->single(); 
-    
+ 
         if ($this->db->rowCount() > 0 && password_verify($pass, $result->password)) {
+          
             return $result; 
+            
         } else {
             return false; 
         }

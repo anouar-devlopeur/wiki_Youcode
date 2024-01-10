@@ -21,7 +21,7 @@ class Tags_WikiDao
         $req = "SELECT wiki_tags.ID_PIVOT ID, tags.tagName nameTage,wiki.title title,wiki.dateCreated date ,user.nom Author,categorie.categoryName categorie FROM 
         wiki_tags,tags,wiki,user,categorie where wiki_tags.ID_Wiki=wiki.wikiID 
         and tags.tagID=wiki_tags.ID_TAGS 
-        and user.id_user=wiki.ID_author and categorie.categoryID=wiki.ID_Categorie and user.role=1";
+        and user.id_user=wiki.ID_author and categorie.categoryID=wiki.ID_Categorie and user.role=1 group by wiki.wikiID";
         $this->db->query($req);
         $res = $this->db->fetchAll();
         $static = array();
@@ -41,9 +41,22 @@ class Tags_WikiDao
         return $static;
     }
 
-    /**
-     * Get the value of wikis
-     */
+   
+    public function InsertWiki_Tags(Tags_Wiki $tags_Wiki) {
+        try {
+            $ID_WIKI = $tags_Wiki->getWiki()->getWikiID();
+            $ID_Tags = $tags_Wiki->getTags()->getTagID();
+            $req = "INSERT INTO `wiki_tags` (`ID_Wiki`, `ID_TAGS`) VALUES (:idwiki, :tags)";
+            $this->db->query($req);
+            $this->db->bind(':idwiki', $ID_WIKI);  
+            $this->db->bind(':tags', $ID_Tags);    
+            $this->db->execute();
+        } catch (Exception $e) {
+            error_log("Error in Insert Wiki_Tags: " . $e->getMessage());
+        }
+    }
+    
+    
     public function getWikis()
     {
         return $this->wikis;

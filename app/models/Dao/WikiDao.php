@@ -56,8 +56,35 @@ class WikiDao
         }
     }
 
-
-
+    public function InsertPost(Wiki $post){
+        try {
+            $title = $post->getTitle();
+            $content = $post->getContent();
+            $image = $post->getImage();
+            $dateCreated = $post->getDateCreated();
+            $ID_author = $post->getAuthor()->getId_user();
+            $ID_Categorie = $post->getCategorie()->getCategoryID();
+    
+            $req = "INSERT INTO wiki(title,content,image,dateCreated,ID_author, ID_Categorie) 
+                    VALUES (:title, :content, :image, :dateCreated, :ID_author, :ID_Categorie)";
+    
+            $this->db->query($req);
+            $this->db->bind(':title', $title);
+            $this->db->bind(':content', $content);
+            $this->db->bind(':image', $image);
+            $this->db->bind(':dateCreated', $dateCreated);
+            $this->db->bind(':ID_author', $ID_author);
+            $this->db->bind(':ID_Categorie', $ID_Categorie);
+            
+            $this->db->execute();
+            $wikiID=$this->db->lastInsertId();
+            return $wikiID;
+           
+        } catch (Exception $e) { 
+            error_log("Error in Insert wiki: " . $e->getMessage());
+        }
+    }
+    
     public function getWiki()
     {
         return $this->wiki;

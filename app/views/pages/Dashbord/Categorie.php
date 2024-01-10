@@ -79,12 +79,15 @@ require APPROOT . '/views/inc/sidebar.php';
                                                 </td>
 
                                                 <td>
+                                                    <!-- Modal Trigger -->
                                                     <a class="update_btn" type="button" data-bs-toggle="modal"
                                                         value="<?= $cat->getCategoryName() ?>"
                                                         data-key="<?= $cat->getCategoryID() ?>"
+                                                        data-date="<?= $cat->getDateCreateCat() ?>"
                                                         data-bs-target="#updateGenreModal" data-bs-whatever="@mdo">
                                                         <i class="btn btn-primary far fa-pen"></i>
                                                     </a>
+
 
                                                     <a
                                                         href="<?= URLROOT ?>/AdminController/DeleteCategorie?id=<?= $cat->getCategoryID() ?>"><i
@@ -121,6 +124,12 @@ require APPROOT . '/views/inc/sidebar.php';
                                         <label for="Categorie" class="col-form-label">Categorie:</label>
                                         <input id="idCategorie" type="hidden" class="form-control" name="id">
                                         <input id="Categorie" type="text" class="form-control" name="Categorie">
+                                    </div>
+                                    <div class="mb-3">
+                                        <!-- <label for="date" class="col-form-label">Date:</label> -->
+
+                                        <input id="date" type="text" class="form-control" name="date">
+
                                     </div>
 
 

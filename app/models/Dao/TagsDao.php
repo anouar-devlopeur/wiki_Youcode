@@ -24,7 +24,6 @@ class TagsDao{
             return $TAGS;
         } catch (Exception $e) {
             // Handle the exception
-            // function is used to send an error message to the web server's error log
             error_log("Error in getAllTags: " . $e->getMessage());
 
         }

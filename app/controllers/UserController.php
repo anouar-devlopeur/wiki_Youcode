@@ -72,7 +72,7 @@ class UserController extends Controller
         $tmp_name = $image['tmp_name'];
         $imageContent = file_get_contents($tmp_name);
 
-
+   
         $user = new User();
         $user->setNom($name);
         $user->setEmail($email);
@@ -99,9 +99,20 @@ class UserController extends Controller
     }
   }
   public function Login_Author(){
+//  $error_Email =  $error_Password = "";
     if(isset($_POST['login'])){
      $email=$_POST['email'];
      $pss=$_POST['password'];
+    //  $emailPattern = "/^[a-zA-Z0-9._-]+@[a-z]+\.[a-zA-Z]{2,}$/";
+    //  if (!preg_match($emailPattern, $email)) {
+    //    $error_Email = "Invalid email address.";
+    //  }
+     
+    //  if (!preg_match("/^[a-zA-Z0-9]+$/", $pss)) {
+    //   $error_Password = "Password is not valid.";
+    // }
+    // if (empty($error_Email) &&  empty($error_Password)) {
+
      $user=new User();
      $user->setEmail($email);
      $user->setPassword($pss);
@@ -125,15 +136,27 @@ class UserController extends Controller
         redirect('AdminController/Dashbord');
        }
   } else {
-      echo 'user not found';
+    $_SESSION['Error']= 'user not found';
+    $this->view('pages/register/login');
   }
-    }
+     }
+     //else{
+    //   $data = [
+    //     'error_Email' => $error_Email,
+    //     'error_Password' => $error_Password,
+    //   ];
+    //    $this->view('pages/register/login',$data);
+      
+    // }
+   else{
+    $_SESSION['Error']= 'user not found';
+    $this->view('pages/register/login');
   }
 
 
 }
 
-
+}
 
 
 

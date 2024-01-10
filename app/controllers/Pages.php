@@ -1,22 +1,24 @@
 <?php
-
-
 class Pages extends Controller
-{
-
+{   private $tags_Wiki;
+    private $categoy;
     public function __construct()
     {
-
+        //  $this->tags_Wiki=$this->model('Tags_WikiDao');
+        $this->categoy = $this->model('CategorieDao');
     }
 
     public function index()
     {
         $data = [
             'title' => 'wiki',
+            'Categorie' => $this->categoy->getAllCat(),
+            // 'post'=>$this->tags_Wiki->getAllAFFiche()
         ];
 
         $this->view('pages/users/Home', $data);
     }
+ 
     // public function FunctionName() {
     //     redirect('Pages/index');
     // }

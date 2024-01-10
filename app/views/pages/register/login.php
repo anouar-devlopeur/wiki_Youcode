@@ -58,8 +58,20 @@ require APPROOT . '/views/inc/HeaderHome.php'; ?>
                                     <div class="pt-1 mb-4">
                                         <button class="btn btn-dark btn-lg btn-block" name="login"
                                             type="submit">Login</button>
-                                    </div>
 
+                                        <?php 
+                                        if(isset($_SESSION['Error'])){
+                                        ?>
+                                        <span class="alert alert-danger text-center" role="alert">
+                                            <?php    echo $_SESSION['Error'];
+                                            unset($_SESSION['Error']);
+                                        }
+                                            ?>
+
+                                        </span>
+
+
+                                    </div>
 
                                     <p class="mb-5 pb-lg-2" style="color: #393f81;">Don't have an account? <a
                                             href="<?= URLROOT?>/UserController/register" style="color: #393f81;">

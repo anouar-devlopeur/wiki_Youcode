@@ -11,14 +11,22 @@ require APPROOT . '/views/inc/HeaderHome.php'; ?>
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
                 <li class="nav-item"><a class="nav-link active" href="<?= URLROOT ?>/Pages">Home</a></li>
-                <?php if (!isset($_SESSION["user"]) && empty($_SESSION["user"])) { ?>
+                <?php if (!isset($_SESSION["userName"]) && empty($_SESSION["userName"])) { ?>
                 <li class=" nav-item"><a class="nav-link" href="<?= URLROOT ?>/UserController/register">SignUp</a>
                 </li>
                 <li class="nav-item"><a class="nav-link" href="<?= URLROOT ?>/UserController/login">Login</a></li>
-                <?php } else { ?>
-                <li class="nav-item"><a class="nav-link" href="<?= URLROOT ?>/UserController/login">Logut</a></li>
+                <?php }elseif( $_SESSION['userRole']==1){?>
+                <li class="nav-item"><a class="nav-link" href="<?= URLROOT ?>/AdminController/logout">Logut</a>
+                </li>
+                <li class="nav-item"><a class="nav-link " aria-current="page" href="#">Post</a></li>
+
+                <?php  }
+                else { ?>
+                <li class="nav-item"><a class="nav-link " aria-current="page"
+                        href="<?= URLROOT ?>/AdminController/">Dashbord</a></li>
+
+                <li class="nav-item"><a class="nav-link" href="<?= URLROOT ?>/AdminController/logout">Logut</a></li>
                 <?php } ?>
-                <!-- <li class="nav-item"><a class="nav-link " aria-current="page" href="#">Blog</a></li> -->
             </ul>
         </div>
     </div>
@@ -47,120 +55,53 @@ require APPROOT . '/views/inc/HeaderHome.php'; ?>
                     <h2>Categories</h2>
                 </div>
                 <div class="card-body">
-                    <div class="row">
+                    <div class="d-grid">
+
                         <div class="col-sm-6">
-                            <ul class="list-unstyled mb-0">
-                                <li><a href="#!">Web Design</a></li>
-                                <li><a href="#!">HTML</a></li>
-                                <li><a href="#!">Freebies</a></li>
+                            <ul class="list-unstyled mb-0 ">
+                                <?php foreach($data['Categorie'] as $categorie) {?>
+                                <li><a href="<?= URLROOT ?>"><?= $categorie->getCategoryName()?></a></li>
+
+                                <?php } ?>
+
                             </ul>
                         </div>
-                        <div class="col-sm-6">
-                            <ul class="list-unstyled mb-0">
-                                <li><a href="#!">JavaScript</a></li>
-                                <li><a href="#!">CSS</a></li>
-                                <li><a href="#!">Tutorials</a></li>
-                            </ul>
-                        </div>
+
                     </div>
                 </div>
             </div>
 
         </div>
     </div>
-    <!-- Nested row for non-featured blog posts-->
-    <!-- <div class="row w-100"> -->
+    <!-- <div class=" row w-100"> -->
 
     <div class=" row">
 
 
 
         <!-- Blog post-->
+
+        <!-- <?php foreach($data['post'] as $post){?>
         <div class="col-md-3  ">
             <div class="card mb-4 w-100 ">
-                <a href="#!"><img class="card-img-top" src="https://dummyimage.com/700x350/dee2e6/6c757d.jpg"
-                        alt="..." /></a>
+                <a href="#!"><img
+                        src="data:image/jpg;charset=utf8;base64,<?php echo base64_encode( $post->getImage()); ?>"
+                        class="card-img-top" /></a>
                 <div class="card-body">
-                    <div class="small text-muted">January 1, 2023</div>
-                    <h2 class="card-title h4">Post Title</h2>
-                    <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-                        Reiciendis aliquid atque, nulla.</p>
+                    <div class="small text-muted"><?= $post->getDateCreated() ?> </div>
+                    <h2 class="card-title h4"><?= $post->getTitle() ?></h2>
+                    <p class="card-text"></p>
                     <a class="btn btn-primary" href="#!">Read more →</a>
                 </div>
             </div>
 
         </div>
+        <?php } ?> -->
         <!-- Blog post-->
-        <div class="col-md-3  ">
-            <div class="card mb-4 w-100 ">
-                <a href="#!"><img class="card-img-top" src="https://dummyimage.com/700x350/dee2e6/6c757d.jpg"
-                        alt="..." /></a>
-                <div class="card-body">
-                    <div class="small text-muted">January 1, 2023</div>
-                    <h2 class="card-title h4">Post Title</h2>
-                    <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-                        Reiciendis aliquid atque, nulla.</p>
-                    <a class="btn btn-primary" href="#!">Read more →</a>
-                </div>
-            </div>
 
-        </div>
-        <div class="col-md-3  ">
-            <div class="card mb-4 w-100 ">
-                <a href="#!"><img class="card-img-top" src="https://dummyimage.com/700x350/dee2e6/6c757d.jpg"
-                        alt="..." /></a>
-                <div class="card-body">
-                    <div class="small text-muted">January 1, 2023</div>
-                    <h2 class="card-title h4">Post Title</h2>
-                    <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-                        Reiciendis aliquid atque, nulla.</p>
-                    <a class="btn btn-primary" href="#!">Read more →</a>
-                </div>
-            </div>
 
-        </div>
-        <div class="col-md-3 ">
-            <div class="card mb-4  w-* ">
-                <a href="#!"><img class="card-img-top" src="https://dummyimage.com/700x350/dee2e6/6c757d.jpg"
-                        alt="..." /></a>
-                <div class="card-body">
-                    <div class="small text-muted">January 1, 2023</div>
-                    <h2 class="card-title h4">Post Title</h2>
-                    <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-                        Reiciendis aliquid atque, nulla.</p>
-                    <a class="btn btn-primary" href="#!">Read more →</a>
-                </div>
-            </div>
 
-        </div>
-        <div class="col-md-3  ">
-            <div class="card mb-4  w-*">
-                <a href="#!"><img class="card-img-top" src="https://dummyimage.com/700x350/dee2e6/6c757d.jpg"
-                        alt="..." /></a>
-                <div class="card-body">
-                    <div class="small text-muted">January 1, 2023</div>
-                    <h2 class="card-title h4">Post Title</h2>
-                    <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-                        Reiciendis aliquid atque, nulla.</p>
-                    <a class="btn btn-primary" href="#!">Read more →</a>
-                </div>
-            </div>
 
-        </div>
-        <div class="col-md-3  ">
-            <div class="card mb-4  w-*">
-                <a href="#!"><img class="card-img-top" src="https://dummyimage.com/700x350/dee2e6/6c757d.jpg"
-                        alt="..." /></a>
-                <div class="card-body">
-                    <div class="small text-muted">January 1, 2023</div>
-                    <h2 class="card-title h4">Post Title</h2>
-                    <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-                        Reiciendis aliquid atque, nulla.</p>
-                    <a class="btn btn-primary" href="#!">Read more →</a>
-                </div>
-            </div>
-
-        </div>
         <!-- <div class="col-md-3 card mb-4  w-* ">
             <a href="#!"><img class="card-img-top" src="https://dummyimage.com/700x350/dee2e6/6c757d.jpg"
                     alt="..." /></a>

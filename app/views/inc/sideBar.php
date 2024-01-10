@@ -27,11 +27,11 @@
                         <span>Post_Author</span>
                     </a>
                 </li>
-                <!-- <li style=" margin-top:7%" class="btn bg-dark">
+                <li style=" margin-top:7%" class="btn bg-dark">
                     <a href="<?= URLROOT ?>/Pages" class="nav-link px-3">
                         <span>Home</span>
                     </a>
-                </li> -->
+                </li>
                 <form action="<?= URLROOT ?>/AdminController/logout" class=" ps-5 mt-5">
 
                     <button class="btn bg-dark ms-1 w-75">

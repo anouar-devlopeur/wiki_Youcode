@@ -148,10 +148,5 @@ require APPROOT . '/views/inc/HeaderHome.php'; ?>
     </div>
 
 </div>
-<!-- Footer-->
-<footer class="py-5 bg-dark">
-    <div class="container">
-        <p class="m-0 text-center text-white">WIKI &copy; 2024</p>
-    </div>
-</footer><?php
+<?php
 require APPROOT . '/views/inc/footerHome.php'; ?>

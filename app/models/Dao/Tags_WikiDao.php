@@ -25,7 +25,7 @@ class Tags_WikiDao{
             $statistiques->setID_PIVOT($obj->ID);
             $statistiques->getTags()->setTagName($obj->nameTage);
             $statistiques->getWiki()->setTitle($obj->title);
-            // $statistiques->getWiki()->get
+         
         
             $statistiques->getWiki()->setDateCreated($obj->date);
             $statistiques->getWiki()->getAuthor()->setNom($obj->Author);

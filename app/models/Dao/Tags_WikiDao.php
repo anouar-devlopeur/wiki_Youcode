@@ -18,10 +18,10 @@ class Tags_WikiDao
 
     public function getAllAFFiche()
     {
-        $req = "SELECT wiki_tags.ID_PIVOT ID, tags.tagName nameTage,wiki.title title,wiki.dateCreated date ,user.nom Author,categorie.categoryName categorie FROM 
+        $req = "SELECT wiki_tags.ID_PIVOT ID, tags.tagName nameTage,wiki.title title,wiki.image image,wiki.dateCreated date ,user.nom Author,categorie.categoryName categorie FROM 
         wiki_tags,tags,wiki,user,categorie where wiki_tags.ID_Wiki=wiki.wikiID 
         and tags.tagID=wiki_tags.ID_TAGS 
-        and user.id_user=wiki.ID_author and categorie.categoryID=wiki.ID_Categorie and user.role=1 group by wiki.wikiID";
+        and user.id_user=wiki.ID_author and categorie.categoryID=wiki.ID_Categorie and user.role=1 group by wiki.wikiID ORDER BY   wiki.dateCreated DESC";
         $this->db->query($req);
         $res = $this->db->fetchAll();
         $static = array();
@@ -30,8 +30,7 @@ class Tags_WikiDao
             $statistiques->setID_PIVOT($obj->ID);
             $statistiques->getTags()->setTagName($obj->nameTage);
             $statistiques->getWiki()->setTitle($obj->title);
-
-
+            $statistiques->getWiki()->setImage($obj->image);
             $statistiques->getWiki()->setDateCreated($obj->date);
             $statistiques->getWiki()->getAuthor()->setNom($obj->Author);
             $statistiques->getWiki()->getCategorie()->setCategoryName($obj->categorie);

@@ -35,12 +35,7 @@ require APPROOT . '/views/inc/navbar.php';
                                 </label>
                                 <input type="file" class="form-control" name="img" required>
                             </div>
-                            <div class="mb-3">
-                                <label for="date" class="col-form-label">
-                                    date :
-                                </label>
-                                <input type="date" class="form-control" name="date" required>
-                            </div>
+
                             <div class="mb-3">
                                 <label for="date" class="col-form-label">
                                     Categorie :
@@ -59,6 +54,7 @@ require APPROOT . '/views/inc/navbar.php';
 
                             <?php foreach($data['Tags'] as $tags){ ?>
                             <input type="checkbox" name="tags[]" value="<?= $tags->getTagID() ?>">
+
                             <?= $tags->getTagName() ?>
 
                             <?php  } ?>

@@ -14,6 +14,7 @@ class WikiDao
     }
     public function getAllWiki()
     {
+       
         $req = "SELECT wikiID, title, content ,wiki.image as image , dateCreated, status, user.nom as nom , categorie.categoryName as Categorie FROM wiki,categorie,user where wiki.ID_Categorie=categorie.categoryID 
         and user.id_user=wiki.ID_author and wiki.status = 1 ";
         $this->db->query($req);
@@ -61,7 +62,7 @@ class WikiDao
             $title = $post->getTitle();
             $content = $post->getContent();
             $image = $post->getImage();
-            $dateCreated = $post->getDateCreated();
+            $currentDate = date('Y-m-d H:i:s');
             $ID_author = $post->getAuthor()->getId_user();
             $ID_Categorie = $post->getCategorie()->getCategoryID();
     
@@ -72,7 +73,7 @@ class WikiDao
             $this->db->bind(':title', $title);
             $this->db->bind(':content', $content);
             $this->db->bind(':image', $image);
-            $this->db->bind(':dateCreated', $dateCreated);
+            $this->db->bind(':dateCreated', $currentDate);
             $this->db->bind(':ID_author', $ID_author);
             $this->db->bind(':ID_Categorie', $ID_Categorie);
             

@@ -28,6 +28,8 @@ class AuthorController extends Controller
     public function InsertPost()
     {
         if (isset($_POST['addpost'])) {
+            // print_r($_POST); 
+
             $title = $_POST['title'];
             $Content = $_POST['Content'];
             $date = $_POST['date'];
@@ -41,16 +43,16 @@ class AuthorController extends Controller
             $WIKI = new wiki();
             $WIKI->setTitle($title);
             $WIKI->setContent($Content);
-            $WIKI->setDateCreated($date);
             $WIKI->setImage($image);
             $WIKI->getCategorie()->setCategoryID($category);
             $WIKI->getAuthor()->setId_user($id_User);
             $wiki = $this->wiki->InsertPost($WIKI);
             if (isset($_POST['tags']) && is_array($_POST['tags'])) {
                 foreach ($_POST['tags'] as $tag) {
-              $Tags_Wiki=new Tags_Wiki();
+                   $Tags_Wiki=new Tags_Wiki();
              $Tags_Wiki->getWiki()->setWikiID($wiki);
              $Tags_Wiki->getTags()->setTagID($tag);
+            //  var_dump($Tags_Wiki->getTags()->setTagID($tag));
            $this->wiki_tags->InsertWiki_Tags($Tags_Wiki);
                 }
 

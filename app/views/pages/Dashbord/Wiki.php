@@ -49,8 +49,9 @@ require APPROOT . '/views/inc/sidebar.php';
                                                     <?= $Wiki->getContent() ?>
                                                 </td>
                                                 <td>
-                                                    <img src="data:image/jpg;charset=utf8;base64,<?php echo base64_encode( $Wiki->getImage()); ?>"
+                                                    <img src="<?= URLROOT ?>/public/img/<?php echo $Wiki->getImage(); ?>"
                                                         style="width: 100px; border-radius: 10px;" />
+
 
                                                 </td>
                                                 <td>

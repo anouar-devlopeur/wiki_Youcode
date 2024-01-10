@@ -15,7 +15,7 @@ class CategorieDao
     public function getAllCat()
     {
         try {
-            $req = "SELECT * FROM `categorie`";
+            $req = "SELECT * FROM `categorie` ORDER by dateCreateCat DESC";
             $this->db->query($req);
             $res = $this->db->fetchAll();
             $categorie = array();
@@ -23,6 +23,7 @@ class CategorieDao
                 $category = new Categorie();
                 $category->setCategoryID($obj->categoryID);
                 $category->setCategoryName($obj->categoryName);
+                $category->setDateCreateCat($obj->dateCreateCat);
                 array_push($categorie, $category);
             }
             return $categorie;
@@ -32,6 +33,7 @@ class CategorieDao
 
         }
     }
+
 
     //insert
     public function InsertCategorie(Categorie $categorie)

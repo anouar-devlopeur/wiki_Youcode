@@ -4,7 +4,7 @@ class Pages extends Controller
     private $categoy;
     public function __construct()
     {
-        //  $this->tags_Wiki=$this->model('Tags_WikiDao');
+         $this->tags_Wiki=$this->model('Tags_WikiDao');
         $this->categoy = $this->model('CategorieDao');
     }
 
@@ -13,7 +13,7 @@ class Pages extends Controller
         $data = [
             'title' => 'wiki',
             'Categorie' => $this->categoy->getAllCat(),
-            // 'post'=>$this->tags_Wiki->getAllAFFiche()
+            'post'=>$this->tags_Wiki->getAllAFFiche()
         ];
 
         $this->view('pages/users/Home', $data);

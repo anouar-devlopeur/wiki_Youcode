@@ -3,6 +3,7 @@ class Categorie{
     // `categoryID`, `categoryName:
     private $categoryID;
     private $categoryName;
+    private  $dateCreateCat;
     public function __construct(){
         
     }
@@ -35,6 +36,22 @@ class Categorie{
     public function setCategoryName($categoryName)
     {
         $this->categoryName = $categoryName;
+
+        return $this;
+    }
+
+    /**
+     * Get the value of dateCreateCat
+     */ 
+    public function getDateCreateCat()
+    {
+        return $this->dateCreateCat;
+    }
+
+    
+    public function setDateCreateCat($dateCreateCat)
+    {
+        $this->dateCreateCat = $dateCreateCat;
 
         return $this;
     }

@@ -61,6 +61,7 @@ require APPROOT . '/views/inc/sidebar.php';
                                             <tr>
                                                 <th>#</th>
                                                 <th>Name_Categorie</th>
+                                                <th>DATE_Creat</th>
                                                 <th>Action</th>
                                             </tr>
                                         </thead>
@@ -72,6 +73,9 @@ require APPROOT . '/views/inc/sidebar.php';
                                                 </td>
                                                 <td>
                                                     <?= $cat->getCategoryName()  ?>
+                                                </td>
+                                                <td>
+                                                    <?= $cat->getDateCreateCat()  ?>
                                                 </td>
 
                                                 <td>

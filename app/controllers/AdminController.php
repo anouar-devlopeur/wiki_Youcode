@@ -18,6 +18,10 @@ class AdminController extends Controller
 
   public function index()
   {
+    if(!isAdmin()){
+      redirect('Controller404');
+    }
+    
     $data = [
       'title' => 'wiki',
       'Catgorie'=>$this->adminDao->affiche_Statistiques('categorie'),
@@ -180,12 +184,17 @@ class AdminController extends Controller
   // ______________________Log Out----------------
   public function logout()
   {
-    $_SESSION['id_user'] = null;
-    $_SESSION['nom'] = null;
-    $_SESSION['email'] = null;
+   
+    $_SESSION['userId'] = null;
+    $_SESSION['userName'] = null;
+    $_SESSION['userEmail'] = null;
+    $_SESSION['userImage'] =null;
+    $_SESSION['userRole'] =null;
     session_destroy();
+    // unset();
     redirect('');
   }
+  
 
 }
 ?>

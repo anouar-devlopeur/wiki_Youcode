@@ -4,6 +4,7 @@ class User
     // `id_user`, `nom`, `email`, `password`, `role` 
     private $id_user;
     private $nom;
+    private $IMAGE;
     private $email;
     private $password;
     private $role;
@@ -84,6 +85,26 @@ class User
     public function setRole($role)
     {
         $this->role = $role;
+
+        return $this;
+    }
+
+    /**
+     * Get the value of IMAGE
+     */ 
+    public function getIMAGE()
+    {
+        return $this->IMAGE;
+    }
+
+    /**
+     * Set the value of IMAGE
+     *
+     * @return  self
+     */ 
+    public function setIMAGE($IMAGE)
+    {
+        $this->IMAGE = $IMAGE;
 
         return $this;
     }

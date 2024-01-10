@@ -20,7 +20,7 @@
         require_once '../app/views/'.$url.'.php';
       } else {
         // No view exists
-        // include '../app/views/pages/404.php';
+        include '../app/views/pages/404.php';
       }
     }
   }

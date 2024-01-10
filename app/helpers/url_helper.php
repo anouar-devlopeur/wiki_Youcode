@@ -11,3 +11,11 @@
     }
     return false;
   }
+  function isAuhtor(){
+    if(isset($_SESSION['userRole'])){
+      if($_SESSION['userRole']==1){
+        return true;
+      }
+    }
+    return false;
+  }

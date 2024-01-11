@@ -169,6 +169,7 @@ class AdminController extends Controller
   
   // -----------------------------fin tags--------------------------
   // ------------------------------- wiki --------------
+  // Archive
   public function ArchiveWiki(){
     if (isset($_POST['Archive'])) {
       $idWiki = $_POST['id'];

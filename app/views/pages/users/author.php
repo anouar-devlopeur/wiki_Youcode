@@ -2,7 +2,7 @@
 require APPROOT . '/views/inc/HeaderHome.php'; 
 require APPROOT . '/views/inc/navbar.php';
 ?>
-<section class=" container mt-2 ">
+<section class=" container mt-2  ">
     <div class=" button-add-student ms-2 mb-4 mt-3">
         <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal"
             data-bs-whatever="@mdo">Add Post Wiki</button>
@@ -72,19 +72,37 @@ require APPROOT . '/views/inc/navbar.php';
     </div>
 
     <div class=" mt-5  mx-auto">
-        <div class=" row gap-2 ">
+        <div class=" row gap-3 ">
+            <?php 
+         
+        
+           foreach($data['post'] as $post){
+            
+              if($post->getWiki()->getAuthor()->getId_user() ==$_SESSION['userId']){
+               
+            
+            ?>
             <div class=" col-md-3 card my-4  ">
-                <a href=" #!"><img class="card-img-top" src="https://dummyimage.com/700x350/dee2e6/6c757d.jpg"
-                        alt="..." /></a>
+                <a href="#!"> <img src="<?= URLROOT ?>/public/img/<?php echo $post->getWiki()->getImage(); ?>"
+                        width="600" height="200" class="card-img-top card-img-custom p-1 " />
+                </a>
                 <div class="card-body">
-                    <div class="small text-muted">January 1, 2023</div>
-                    <h2 class="card-title h4">Post Title</h2>
-                    <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-                        Reiciendis aliquid atque, nulla.</p>
-                    <a class="btn btn-primary" href="#!">update</a>
-                    <a class="btn btn-danger" href="#!">Delete</a>
+                    <div class="small text-muted"><?= $post->getWiki()->getDateCreated() ?></div>
+                    <h2 class="card-title h4"><?= $post->getWiki()->getTitle() ?></h2>
+                    <span class="card-title"><?= $post->getWiki()->getCategorie()->getCategoryName() ?></span>
+                    <p class="card-text"><?= $post->getWiki()->getContent() ?></p>
+                    <a class="btn btn-primary update-wiki" href="<?= URLROOT ?>/AuthorController/UpdatePost?idupdate=<?=
+                        
+                        $post->getWiki()->getWikiID() ?>">Update</a>
+
+                    <a class=" btn btn-danger"
+                        href="<?= URLROOT ?>/AuthorController/DeletePost?iddelete=<?=$post->getWiki()->getWikiID() ?>">Delete</a>
                 </div>
+
             </div>
+            <?php  }
+        }
+         ?>
 
         </div>
     </div>

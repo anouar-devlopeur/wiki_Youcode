@@ -68,7 +68,10 @@ require APPROOT . '/views/inc/navbar.php';
                 <div class="card-body">
                     <div class="small text-muted"><?= $post->getWiki()->getDateCreated() ?> </div>
                     <h2 class=" card-title h4"><?= $post->getWiki()->getTitle() ?></h2>
-                    <p class="card-text"><?= $post->getWiki()->getCategorie()->getCategoryName() ?></p>
+                    <span class="card-title h6">
+                        <?= $post->getTags()->getTagName() ?></span>
+                    <p class="card-text"><?= $post->getWiki()->getCategorie()->getCategoryName() ?>
+                    </p>
                     <a class="btn btn-primary"
                         href="<?= URLROOT ?>/SingleController/Single?id=<?= $post->getID_PIVOT() ?>">Read more →</a>
                 </div>

@@ -48,7 +48,7 @@ require APPROOT . '/views/inc/navbar.php';
     </div>
     <!-- <div class=" row w-100"> -->
 
-    <div class=" row">
+    <div class=" row " style="margin-bottom: 15%;">
 
 
 
@@ -61,14 +61,16 @@ require APPROOT . '/views/inc/navbar.php';
             ?>
         <div class="col-md-3  ">
             <div class="card mb-4 w-100 ">
-                <a href="#!"><img
-                        src="data:image/jpg;charset=utf8;base64,<?php echo base64_encode( $post->getWiki()->getImage()); ?>"
-                        class="card-img-top" /></a>
+                <a href="#!"> <img src="<?= URLROOT ?>/public/img/<?php echo $post->getWiki()->getImage(); ?>"
+                        width="600" height="200" class="card-img-top card-img-custom p-1 " />
+                </a>
+
                 <div class="card-body">
                     <div class="small text-muted"><?= $post->getWiki()->getDateCreated() ?> </div>
-                    <h2 class="card-title h4"><?= $post->getWiki()->getTitle() ?></h2>
-                    <p class="card-text"></p>
-                    <a class="btn btn-primary" href="<?php $post->getID_PIVOT() ?>">Read more →</a>
+                    <h2 class=" card-title h4"><?= $post->getWiki()->getTitle() ?></h2>
+                    <p class="card-text"><?= $post->getWiki()->getCategorie()->getCategoryName() ?></p>
+                    <a class="btn btn-primary"
+                        href="<?= URLROOT ?>/SingleController/Single?id=<?= $post->getID_PIVOT() ?>">Read more →</a>
                 </div>
             </div>
 

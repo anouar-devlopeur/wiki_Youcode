@@ -15,7 +15,7 @@ require APPROOT . '/views/inc/navbar.php';
                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
                     <div class="modal-body">
-                        <form method="POST" action="<?= URLROOT ?>/AdminController/InsertCategorie"
+                        <form method="POST" action="<?= URLROOT ?>/AuthorController/InsertPost"
                             enctype="multipart/form-data">
                             <div class="mb-3">
                                 <label for="title" class="col-form-label">
@@ -33,14 +33,9 @@ require APPROOT . '/views/inc/navbar.php';
                                 <label for="image" class="col-form-label">
                                     Image :
                                 </label>
-                                <input type="file" class="form-control" name="image" required>
+                                <input type="file" class="form-control" name="img" required>
                             </div>
-                            <div class="mb-3">
-                                <label for="date" class="col-form-label">
-                                    date :
-                                </label>
-                                <input type="date" class="form-control" name="date" required>
-                            </div>
+
                             <div class="mb-3">
                                 <label for="date" class="col-form-label">
                                     Categorie :
@@ -55,11 +50,19 @@ require APPROOT . '/views/inc/navbar.php';
 
                                 </select>
                             </div>
+                            <label for="tags">Tags :</label>
 
+                            <?php foreach($data['Tags'] as $tags){ ?>
+                            <input type="checkbox" name="tags[]" value="<?= $tags->getTagID() ?>">
+
+                            <?= $tags->getTagName() ?>
+
+                            <?php  } ?>
+                            <br>
 
                             <div class="modal-footer">
                                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                                <button type="submit" name="addCAT" class="btn btn-primary">Add Post</button>
+                                <button type="submit" name="addpost" class="btn btn-primary">Add Post</button>
                             </div>
                         </form>
                     </div>

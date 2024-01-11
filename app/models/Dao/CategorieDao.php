@@ -39,10 +39,12 @@ class CategorieDao
     public function InsertCategorie(Categorie $categorie)
     {
         try {
+            $currentDate = date('Y-m-d H:i:s');
             $categorie_name = $categorie->getCategoryName();
-            $req = "INSERT INTO categorie(categoryName) VALUES (:name)";
+            $req = "INSERT INTO categorie(categoryName,dateCreateCat) VALUES (:name,:dateCreateCat)";
             $this->db->query($req);
             $this->db->bind(':name', $categorie_name);
+            $this->db->bind(':dateCreateCat', $currentDate);
             $this->db->execute();
         } catch (Exception $e) {
             // Handle the exception
@@ -55,19 +57,26 @@ class CategorieDao
     public function UpdateCategorie(Categorie $categorie)
     {
         try {
-            $categorie_id=$categorie->getCategoryID();
-            $categorie_name=$categorie->getCategoryName();
-            $req = "UPDATE categorie SET categoryName=:name WHERE categoryID= :id";
+            $currentDate = date('Y-m-d H:i:s');
+            $categorie_id = $categorie->getCategoryID();
+            $categorie_name = $categorie->getCategoryName();
+    
+            $req = "UPDATE categorie SET categoryName=:name, dateCreateCat=:date WHERE categoryID= :id";
             $this->db->query($req);
             $this->db->bind(":id", $categorie_id);
             $this->db->bind(":name", $categorie_name);
+            $this->db->bind(":date", $currentDate);
+            
+           
             $this->db->execute();
+    
         } catch (Exception $e) {
-            // Handle the exception
+          
             error_log("Error in update cat: " . $e->getMessage());
-
+    
         }
     }
+    
     //delete
     public function DeleteCategorie(Categorie $categorie)
     {

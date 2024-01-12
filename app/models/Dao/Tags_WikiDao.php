@@ -133,7 +133,15 @@ class Tags_WikiDao
         }
     }
 
-
+public function UpdateWikiTags(Tags_Wiki $tags_Wiki){
+    $tags=$tags_Wiki->getTags()->getTagID();
+    $id=$tags_Wiki->getWiki()->getWikiID();
+    $req="UPDATE `wiki_tags` SET `ID_TAGS`= :tags WHERE ID_Wiki= :id ";
+    $this->db->query($req);
+    $this->db->bind(':id', $id);
+    $this->db->bind(':tags', $tags);
+    $this->db->execute();
+}
 
 
 

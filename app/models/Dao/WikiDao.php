@@ -99,7 +99,42 @@ class WikiDao
         }
     }
     
-  
+//   search 
+
+public function searchUsers($searchTerm)
+{
+    $query = "SELECT title FROM wiki WHERE title LIKE :searchTerm";
+    $this->db->query($query);
+    $this->db->bind(':searchTerm', '%' . $searchTerm . '%');
+    $results = $this->db->fetchAll();
+
+    return $results;
+}
+
+//update wiki 
+public function UpdateWiki(Wiki $update){
+    $IDwiki = $update->getWikiID();
+    $title = $update->getTitle();
+    $content = $update->getContent();
+    $image = $update->getImage();
+    $currentDate = date('Y-m-d H:i:s');
+    $category = $update->getCategorie()->getCategoryID();
+ 
+
+    $req = "UPDATE wiki SET title = :title, content = :content, image = :image, dateCreated = :datec, ID_Categorie = :category WHERE wikiID = :id";
+
+    $this->db->query($req);
+    $this->db->bind(':id', $IDwiki);
+    $this->db->bind(':title', $title);
+    $this->db->bind(':content', $content);
+    $this->db->bind(':image', $image);
+    $this->db->bind(':datec', $currentDate);
+    $this->db->bind(':category', $category);
+
+    $this->db->execute();
+}
+
+
 
     public function getWiki()
     {

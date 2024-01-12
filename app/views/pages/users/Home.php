@@ -15,12 +15,22 @@ require APPROOT . '/views/inc/navbar.php';
                 <div class="ms-2 mt-2">
                     <h2> Search</h2>
                 </div>
-                <div class=" card-body">
-                    <div class="input-group">
-                        <input class="form-control" type="text" placeholder="Enter search ..."
-                            aria-label="Enter search ..." aria-describedby="button-search" />
+                <!-- HTML Form -->
+                <form action="<?= URLROOT ?>/Pages/search" method="GET">
+                    <div class="card-body">
+                        <div class="input-group">
+                            <input class="form-control" type="text" name="search" id="searchResults"
+                                placeholder="Enter search..." aria-label="Enter search..."
+                                aria-describedby="button-search" />
+                        </div>
                     </div>
-                </div>
+                </form>
+
+                <!-- Result Div -->
+                <div id="searchResults" class="bg-danger"></div>
+
+
+
             </div>
 
             <div class="card mb-4 ">
@@ -33,7 +43,7 @@ require APPROOT . '/views/inc/navbar.php';
                         <div class="col-sm-6">
                             <ul class="list-unstyled mb-0 ">
                                 <?php foreach($data['Categorie'] as $categorie) {?>
-                                <li><a href="<?= URLROOT ?>"><?= $categorie->getCategoryName()?></a></li>
+                                <li><a href=" <?= URLROOT ?>"><?= $categorie->getCategoryName()?></a></li>
 
                                 <?php } ?>
 
@@ -97,5 +107,49 @@ require APPROOT . '/views/inc/navbar.php';
 
 </div>
 </div>
+
+
+
+
 <?php
-require APPROOT . '/views/inc/footerHome.php'; ?>
+require APPROOT . '/views/inc/footerHome.php'; 
+?>
+<script>
+var searchUrl = '<?= URLROOT ?>/Pages/search';
+var searchResultsDiv = $('#searchResults');
+
+$(document).ready(function() {
+    $('#search').on('keyup', function() {
+        var searchTerm = $(this).val().trim();
+
+        if (searchTerm === "") {
+            searchResultsDiv.empty().hide();
+            return;
+        }
+
+        $.ajax({
+            type: 'GET',
+            url: searchUrl,
+            data: {
+                search: searchTerm,
+                datatype: 'json',
+            },
+            success: function(data) {
+                searchResultsDiv.empty();
+
+                $.each(data, function(index, result) {
+
+                    var innerData = `<h5>${result.username}</h5>`;
+                    console.log(innerData);
+                    searchResultsDiv.append(innerData);
+                });
+
+                searchResultsDiv.show();
+            },
+            error: function(error) {
+                console.error(error.responseText);
+            }
+        });
+    });
+});
+</script>

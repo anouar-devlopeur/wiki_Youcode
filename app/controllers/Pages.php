@@ -2,10 +2,12 @@
 class Pages extends Controller
 {   private $tags_Wiki;
     private $categoy;
+    private $wiki;
     public function __construct()
     {
          $this->tags_Wiki=$this->model('Tags_WikiDao');
         $this->categoy = $this->model('CategorieDao');
+        $this->wiki = $this->model('WikiDao');
     }
 
     public function index()
@@ -19,6 +21,18 @@ class Pages extends Controller
         $this->view('pages/users/Home', $data);
     }
  
+    public function search()
+    {
+        if (isset($_GET['search'])) {
+            $searchTerm = $_GET['search'];
+            $results = $this->wiki->searchUsers($searchTerm);
+    
+            echo json_encode($results);
+        }
+    }
+
+
+    
     // public function FunctionName() {
     //     redirect('Pages/index');
     // }

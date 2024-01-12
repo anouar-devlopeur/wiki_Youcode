@@ -1,11 +1,12 @@
 <?php
 class Pages extends Controller
-{   private $tags_Wiki;
+{
+    private $tags_Wiki;
     private $categoy;
     private $wiki;
     public function __construct()
     {
-         $this->tags_Wiki=$this->model('Tags_WikiDao');
+        $this->tags_Wiki = $this->model('Tags_WikiDao');
         $this->categoy = $this->model('CategorieDao');
         $this->wiki = $this->model('WikiDao');
     }
@@ -15,25 +16,41 @@ class Pages extends Controller
         $data = [
             'title' => 'wiki',
             'Categorie' => $this->categoy->getAllCat(),
-            'post'=>$this->tags_Wiki->getAllAFFiche()
+            'post' => $this->tags_Wiki->getAllLIMIT()
         ];
 
         $this->view('pages/users/Home', $data);
     }
- 
+
     public function search()
     {
         if (isset($_GET['search'])) {
             $searchTerm = $_GET['search'];
             $results = $this->wiki->searchUsers($searchTerm);
-    
+
             echo json_encode($results);
         }
     }
 
+    public function RechercheCat()
+    {
+        if (isset($_GET['cat'])) {
+            $idCat = $_GET['cat'];
+            $CatpOST = new Wiki();
+            $CatpOST->getCategorie()->setCategoryID($idCat);
+          
+            $this->tags_Wiki->getAllCat($CatpOST);
+            $data = [
+             'affichewiki'=>$this->tags_Wiki->getAllCat($CatpOST)
+
+            ];
+            $this->view('pages/users/WikCAT', $data);
+
+        }
+    }
+   
 
     
-    // public function FunctionName() {
     //     redirect('Pages/index');
     // }
 

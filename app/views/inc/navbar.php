@@ -14,8 +14,7 @@
                 <li class="nav-item"><a class="nav-link" href="<?= URLROOT ?>/UserController/login">Login</a></li>
                 <?php }elseif( $_SESSION['userRole']==1){?>
 
-                <li class="nav-item"><a class="nav-link " aria-current="page"
-                        href="<?= URLROOT ?>/SingleController">Wiki_Single</a></li>
+
                 <li class="nav-item"><a class="nav-link " aria-current="page"
                         href="<?= URLROOT ?>/AuthorController">Post</a></li>
                 <li class="nav-item"><a class="nav-link" href="<?= URLROOT ?>/AdminController/logout">Logut</a>

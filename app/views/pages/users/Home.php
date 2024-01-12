@@ -43,7 +43,9 @@ require APPROOT . '/views/inc/navbar.php';
                         <div class="col-sm-6">
                             <ul class="list-unstyled mb-0 ">
                                 <?php foreach($data['Categorie'] as $categorie) {?>
-                                <li><a href=" <?= URLROOT ?>"><?= $categorie->getCategoryName()?></a></li>
+                                <li> <a href=" <?= URLROOT ?>/Pages/RechercheCat?cat=<?= $categorie->getCategoryID()?>">
+                                        <h3> <?= $categorie->getCategoryName()?></h3>
+                                    </a></li>
 
                                 <?php } ?>
 
@@ -83,7 +85,8 @@ require APPROOT . '/views/inc/navbar.php';
                     <p class="card-text"><?= $post->getWiki()->getCategorie()->getCategoryName() ?>
                     </p>
                     <a class="btn btn-primary"
-                        href="<?= URLROOT ?>/SingleController/Single?id=<?= $post->getID_PIVOT() ?>">Read more →</a>
+                        href="<?= URLROOT ?>/SingleController/Single?id=<?= $post->getWiki()->getWikiID() ?>">Read more
+                        →</a>
                 </div>
             </div>
 
@@ -114,42 +117,3 @@ require APPROOT . '/views/inc/navbar.php';
 <?php
 require APPROOT . '/views/inc/footerHome.php'; 
 ?>
-<script>
-var searchUrl = '<?= URLROOT ?>/Pages/search';
-var searchResultsDiv = $('#searchResults');
-
-$(document).ready(function() {
-    $('#search').on('keyup', function() {
-        var searchTerm = $(this).val().trim();
-
-        if (searchTerm === "") {
-            searchResultsDiv.empty().hide();
-            return;
-        }
-
-        $.ajax({
-            type: 'GET',
-            url: searchUrl,
-            data: {
-                search: searchTerm,
-                datatype: 'json',
-            },
-            success: function(data) {
-                searchResultsDiv.empty();
-
-                $.each(data, function(index, result) {
-
-                    var innerData = `<h5>${result.username}</h5>`;
-                    console.log(innerData);
-                    searchResultsDiv.append(innerData);
-                });
-
-                searchResultsDiv.show();
-            },
-            error: function(error) {
-                console.error(error.responseText);
-            }
-        });
-    });
-});
-</script>

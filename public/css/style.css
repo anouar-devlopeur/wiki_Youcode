@@ -39,3 +39,12 @@ button {
     top: var(--topNavbarHeight);
   }
 }
+.wrapper-box{
+  padding: 0 !important;
+  opacity: 0 !important;
+  max-height: 100px !important;
+}
+.wrapper-box .active{
+  padding: 8px 10px !important;
+  opacity: 1 !important;
+}

@@ -62,6 +62,10 @@ class Database {
 		$this->execute();
 		return $this->stmt->fetchAll(PDO::FETCH_OBJ);
 	}
+	public function fetchasoc(){
+		$this->execute();
+		return $this->stmt->fetchAll(PDO::FETCH_ASSOC);
+	}
 	
 	// Get single record as object
 	public function single(){

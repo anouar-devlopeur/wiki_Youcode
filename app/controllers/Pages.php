@@ -24,12 +24,21 @@ class Pages extends Controller
 
     public function search()
     {
-        if (isset($_GET['search'])) {
-            $searchTerm = $_GET['search'];
+        $data = json_decode(file_get_contents("php://input"), true);
+        
+            $searchTerm = $data['search'];
             $results = $this->wiki->searchUsers($searchTerm);
-
-            echo json_encode($results);
-        }
+            $array = array();
+            foreach ($results as $wiki) {
+                $data = [
+                    'title' => $wiki->getTitle(),
+                ];
+                $array[] = $data;
+            }
+    
+            
+            echo json_encode($array);
+        
     }
 
     public function RechercheCat()
@@ -38,19 +47,19 @@ class Pages extends Controller
             $idCat = $_GET['cat'];
             $CatpOST = new Wiki();
             $CatpOST->getCategorie()->setCategoryID($idCat);
-          
+
             $this->tags_Wiki->getAllCat($CatpOST);
             $data = [
-             'affichewiki'=>$this->tags_Wiki->getAllCat($CatpOST)
+                'affichewiki' => $this->tags_Wiki->getAllCat($CatpOST)
 
             ];
             $this->view('pages/users/WikCAT', $data);
 
         }
     }
-   
 
-    
+
+
     //     redirect('Pages/index');
     // }
 

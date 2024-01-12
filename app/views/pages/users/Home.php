@@ -1,5 +1,5 @@
 <?php
-require APPROOT . '/views/inc/HeaderHome.php'; 
+require APPROOT . '/views/inc/HeaderHome.php';
 require APPROOT . '/views/inc/navbar.php';
 ?>
 
@@ -27,7 +27,7 @@ require APPROOT . '/views/inc/navbar.php';
                 </form>
 
                 <!-- Result Div -->
-                <div id="searchResults" class="bg-danger"></div>
+                <div class="wrapper-box" class="bg-danger"></div>
 
 
 
@@ -42,10 +42,13 @@ require APPROOT . '/views/inc/navbar.php';
 
                         <div class="col-sm-6">
                             <ul class="list-unstyled mb-0 ">
-                                <?php foreach($data['Categorie'] as $categorie) {?>
-                                <li> <a href=" <?= URLROOT ?>/Pages/RechercheCat?cat=<?= $categorie->getCategoryID()?>">
-                                        <h3> <?= $categorie->getCategoryName()?></h3>
-                                    </a></li>
+                                <?php foreach ($data['Categorie'] as $categorie) { ?>
+                                    <li> <a
+                                            href=" <?= URLROOT ?>/Pages/RechercheCat?cat=<?= $categorie->getCategoryID() ?>">
+                                            <h3>
+                                                <?= $categorie->getCategoryName() ?>
+                                            </h3>
+                                        </a></li>
 
                                 <?php } ?>
 
@@ -66,31 +69,37 @@ require APPROOT . '/views/inc/navbar.php';
 
         <!-- Blog post-->
 
-        <?php 
-        
-        
-        foreach($data['post'] as $post){
+        <?php
+
+
+        foreach ($data['post'] as $post) {
             ?>
-        <div class="col-md-3  ">
-            <div class="card mb-4 w-100 ">
-                <a href="#!"> <img src="<?= URLROOT ?>/public/img/<?php echo $post->getWiki()->getImage(); ?>"
-                        width="600" height="200" class="card-img-top card-img-custom p-1 " />
-                </a>
+            <div class="col-md-3  ">
+                <div class="card mb-4 w-100 ">
+                    <a href="#!"> <img src="<?= URLROOT ?>/public/img/<?php echo $post->getWiki()->getImage(); ?>"
+                            width="600" height="200" class="card-img-top card-img-custom p-1 " />
+                    </a>
 
-                <div class="card-body">
-                    <div class="small text-muted"><?= $post->getWiki()->getDateCreated() ?> </div>
-                    <h2 class=" card-title h4"><?= $post->getWiki()->getTitle() ?></h2>
-                    <span class="card-title h6">
-                        <?= $post->getTags()->getTagName() ?></span>
-                    <p class="card-text"><?= $post->getWiki()->getCategorie()->getCategoryName() ?>
-                    </p>
-                    <a class="btn btn-primary"
-                        href="<?= URLROOT ?>/SingleController/Single?id=<?= $post->getWiki()->getWikiID() ?>">Read more
-                        →</a>
+                    <div class="card-body">
+                        <div class="small text-muted">
+                            <?= $post->getWiki()->getDateCreated() ?>
+                        </div>
+                        <h2 class=" card-title h4">
+                            <?= $post->getWiki()->getTitle() ?>
+                        </h2>
+                        <span class="card-title h6">
+                            <?= $post->getTags()->getTagName() ?>
+                        </span>
+                        <p class="card-text">
+                            <?= $post->getWiki()->getCategorie()->getCategoryName() ?>
+                        </p>
+                        <a class="btn btn-primary"
+                            href="<?= URLROOT ?>/SingleController/Single?id=<?= $post->getWiki()->getWikiID() ?>">Read more
+                            →</a>
+                    </div>
                 </div>
-            </div>
 
-        </div>
+            </div>
         <?php } ?>
         <!-- Blog post-->
 
@@ -115,5 +124,5 @@ require APPROOT . '/views/inc/navbar.php';
 
 
 <?php
-require APPROOT . '/views/inc/footerHome.php'; 
+require APPROOT . '/views/inc/footerHome.php';
 ?>

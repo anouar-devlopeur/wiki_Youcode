@@ -15,14 +15,14 @@ class WikiDao
     // wiki sans Tag
     public function getAllWiki()
     {
-       
+
         $req = "SELECT wikiID, title, content ,wiki.image as image , dateCreated, status, user.nom as nom , categorie.categoryName as Categorie FROM wiki,categorie,user where wiki.ID_Categorie=categorie.categoryID 
         and user.id_user=wiki.ID_author and wiki.status = 1 ";
         $this->db->query($req);
         // obj
         $res = $this->db->fetchAll();
         $Post = array();
-       
+
 
 
         foreach ($res as $obj) {
@@ -57,7 +57,8 @@ class WikiDao
         }
     }
 
-    public function InsertPost(Wiki $post){
+    public function InsertPost(Wiki $post)
+    {
         try {
             $title = $post->getTitle();
             $content = $post->getContent();
@@ -66,10 +67,10 @@ class WikiDao
             $currentDate = date('Y-m-d H:i:s');
             $ID_author = $post->getAuthor()->getId_user();
             $ID_Categorie = $post->getCategorie()->getCategoryID();
-    
+
             $req = "INSERT INTO wiki(title,content,image,dateCreated,ID_author, ID_Categorie) 
                     VALUES (:title, :content, :image, :dateCreated, :ID_author, :ID_Categorie)";
-    
+
             $this->db->query($req);
             $this->db->bind(':title', $title);
             $this->db->bind(':content', $content);
@@ -77,19 +78,19 @@ class WikiDao
             $this->db->bind(':dateCreated', $currentDate);
             $this->db->bind(':ID_author', $ID_author);
             $this->db->bind(':ID_Categorie', $ID_Categorie);
-            
+
             $this->db->execute();
-            $wikiID=$this->db->lastInsertId();
+            $wikiID = $this->db->lastInsertId();
             return $wikiID;
-           
-        } catch (Exception $e) { 
+
+        } catch (Exception $e) {
             error_log("Error in Insert wiki: " . $e->getMessage());
         }
     }
     public function DeletePost(Wiki $post)
     {
         try {
-             $idwiki = $post->getWikiID();
+            $idwiki = $post->getWikiID();
             $req = "DELETE FROM `wiki` WHERE wikiID = :id";
             $this->db->query($req);
             $this->db->bind(':id', $idwiki);
@@ -98,41 +99,48 @@ class WikiDao
             error_log("Error in DeleteWiki: " . $e->getMessage());
         }
     }
-    
-//   search 
 
-public function searchUsers($searchTerm)
-{
-    $query = "SELECT title FROM wiki WHERE title LIKE :searchTerm";
-    $this->db->query($query);
-    $this->db->bind(':searchTerm', '%' . $searchTerm . '%');
-    $results = $this->db->fetchAll();
+    //   search 
 
-    return $results;
-}
+    public function searchUsers($searchTerm)
+    {
+        $query = "SELECT title FROM wiki WHERE title LIKE :searchTerm";
+        $this->db->query($query);
+        $this->db->bind(':searchTerm', '%' . $searchTerm . '%');
+        $results = $this->db->fetchasoc();
+        $rech=array();
+        foreach($results as $row){
+            $wiki=new Wiki();
+            $wiki->setTitle($row['title']);
+            array_push($rech,$wiki);
+        }
 
-//update wiki 
-public function UpdateWiki(Wiki $update){
-    $IDwiki = $update->getWikiID();
-    $title = $update->getTitle();
-    $content = $update->getContent();
-    $image = $update->getImage();
-    $currentDate = date('Y-m-d H:i:s');
-    $category = $update->getCategorie()->getCategoryID();
- 
+        return $rech;
+    }
 
-    $req = "UPDATE wiki SET title = :title, content = :content, image = :image, dateCreated = :datec, ID_Categorie = :category WHERE wikiID = :id";
+    //update wiki 
+    public function UpdateWiki(Wiki $update)
+    {
+        $IDwiki = $update->getWikiID();
+        $title = $update->getTitle();
+        $content = $update->getContent();
+        $image = $update->getImage();
+        $currentDate = date('Y-m-d H:i:s');
+        $category = $update->getCategorie()->getCategoryID();
 
-    $this->db->query($req);
-    $this->db->bind(':id', $IDwiki);
-    $this->db->bind(':title', $title);
-    $this->db->bind(':content', $content);
-    $this->db->bind(':image', $image);
-    $this->db->bind(':datec', $currentDate);
-    $this->db->bind(':category', $category);
 
-    $this->db->execute();
-}
+        $req = "UPDATE wiki SET title = :title, content = :content, image = :image, dateCreated = :datec, ID_Categorie = :category WHERE wikiID = :id";
+
+        $this->db->query($req);
+        $this->db->bind(':id', $IDwiki);
+        $this->db->bind(':title', $title);
+        $this->db->bind(':content', $content);
+        $this->db->bind(':image', $image);
+        $this->db->bind(':datec', $currentDate);
+        $this->db->bind(':category', $category);
+
+        $this->db->execute();
+    }
 
 
 

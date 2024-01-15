@@ -1,6 +1,8 @@
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
     <div class="container">
-        <a class="navbar-brand" href="#!"><b>WIKI</b><sup><b>new</b></sup>
+        <img src="<?= URLROOT ?>/public/img/icons8-wikipedia-logo-96.png" alt="social media" width="50px">
+
+        <a class="navbar-brand" href="<?= URLROOT ?>/Pages"><b>WIKI</b><sup><b>new</b></sup>
         </a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
             aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><span

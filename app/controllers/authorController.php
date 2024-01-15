@@ -76,28 +76,27 @@ class AuthorController extends Controller
 
 
             }
-            redirect('pages/users/author');
+            redirect('AuthorController');
         }
 
 
     }
     // update  recupper les donnes 
-    public function UpdatePost()
+    public function EditPost($id)
     {
-        if (isset($_GET['idupdate'])) {
-            $id = $_GET['idupdate'];
-
-            $tags_wiki = new Tags_Wiki();
-            $tags_wiki->getWiki()->setWikiID($id);
+      
+            
+            // $tags_wiki = new Tags_Wiki();
+            // $tags_wiki->getWiki()->setWikiID($id);
             $data = [
-                'Tags_wiki' => $this->wiki_tags->singleAffiche($tags_wiki),
+                'Tags_wiki' => $this->wiki_tags->singleAfficheV2($id),
                 'Categorie' => $this->categoy->getAllCat(),
                 'Tags' => $this->tags->getAllTags()
             ];
 
 
             $this->view('pages/users/updateWiki', $data);
-        }
+        
     }
 
     //update 
@@ -126,18 +125,25 @@ class AuthorController extends Controller
         $WIKI->setImage($image_path);
         $WIKI->getCategorie()->setCategoryID($category);
          $this->wiki->UpdateWiki($WIKI);
-        print_r($this->wiki->UpdateWiki($WIKI) );
+        // print_r($this->wiki->UpdateWiki($WIKI) );
       
-       if (isset($_POST['tags']) && is_array($_POST['tags'])) {
-        // Add selected tags
-        foreach ($_POST['tags'] as $tag) {
-            $tags_wiki = new Tags_Wiki();
-            $tags_wiki->getWiki()->setWikiID($wikid);
-            $tags_wiki->getTags()->setTagID($tag);
-          $this->wiki_tags->updateWikiTags($tags_wiki);
-        }
+     if (isset($_POST['tags']) && is_array($_POST['tags'])) {
+  
 
+   
+    $this->wiki_tags->clearTagsForWiki($wikid);
+
+    // Add selected tags
+    foreach ($_POST['tags'] as $tag) {
+        $tags_wiki = new Tags_Wiki();
+        $tags_wiki->getWiki()->setWikiID($wikid);
+        $tags_wiki->getTags()->setTagID($tag);
+        $this->wiki_tags->InsertWiki_Tags($tags_wiki);
     }
+}
+
+    
+    redirect('AuthorController');
     }
 
     // dellete
@@ -148,7 +154,7 @@ class AuthorController extends Controller
             $wikiclass = $this->wiki->getWiki();
             $wikidelet = $wikiclass->setWikiID($idwiki);
             $this->wiki->DeletePost($wikidelet);
-
+            redirect('AuthorController');
         }
     }
 

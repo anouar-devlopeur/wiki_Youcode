@@ -69,7 +69,7 @@ require APPROOT . '/views/inc/sidebar.php';
 
 
                                                 <td>
-                                                    <a class="Archive_Wiki btn btn-primary" type="button"
+                                                    <a class="Archive_Wiki btn btn-warning" type="button"
                                                         data-bs-toggle="modal" value="<?= $Wiki->getContent() ?>"
                                                         data-key="<?= $Wiki->getWikiID() ?>"
                                                         data-bs-target="#updateGenreModal" data-bs-whatever="@mdo">

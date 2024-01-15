@@ -7,7 +7,7 @@ require APPROOT . '/views/inc/sidebar.php';
     <div class="main mt-2">
 
 
-        <!--=========================Modal====================-->
+        <!--=========================Modal Insert====================-->
 
         <div class="button-add-student float-end me-4">
             <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal"
@@ -90,7 +90,7 @@ require APPROOT . '/views/inc/sidebar.php';
 
 
                                                     <a
-                                                        href="<?= URLROOT ?>/AdminController/DeleteCategorie?id=<?= $cat->getCategoryID() ?>"><i
+                                                        href="<?= URLROOT ?>/AdminController/DeleteCategorie/<?= $cat->getCategoryID() ?>"><i
                                                             class="btn btn-danger far fa-trash"></i></a>
                                                 </td>
                                             </tr>
@@ -104,7 +104,7 @@ require APPROOT . '/views/inc/sidebar.php';
                 </div>
             </div>
 
-            <!-- ================= New modal  ================ -->
+            <!-- ================= New modal update  ================ -->
             <div class="button-add-student float-end me-4">
 
 

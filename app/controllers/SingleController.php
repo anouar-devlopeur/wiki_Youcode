@@ -37,9 +37,18 @@ class SingleController extends Controller
         }
 
     }
-    public function singleWiki()
+    //js
+    public function singleWiki($id)
     {
-        
+        $CatpOST = new Wiki();
+        $CatpOST->setWikiID($id);
+  
+        $data = [
+         'affichersingle'=>$this->tags_Wiki->singleAffiche($CatpOST)
+
+        ];     
+      
+        $this->view('pages/users/SingleWiki', $data);
     }
 
 }

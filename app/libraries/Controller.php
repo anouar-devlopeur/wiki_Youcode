@@ -4,15 +4,15 @@
    *  Loads Models & Views
    */
   class Controller {
-    // Lets us load model from controllers
+    //  load model from controllers
     public function model($model){
-      // Require model file
+      // require model file
       require_once '../app/models/Dao/' . $model . '.php';
-      // Instantiate model
+      //instant class model
       return new $model();
     }
 
-    // Lets us load view from controllers
+    //  load view from controllers
     public function view($url, $data = []){
       // Check for view file
       if(file_exists('../app/views/'.$url.'.php')){

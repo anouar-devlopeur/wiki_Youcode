@@ -9,7 +9,7 @@ class Core
   // Set Defaults
   protected $currentController = 'Pages'; // Default controller
   protected $currentMethod = 'index'; // Default method
-  protected $params = []; // Set initial empty params array
+  protected $params = []; // Set initializy empty params array 
 
   public function __construct()
   {
@@ -23,7 +23,7 @@ class Core
         // Unset 0 index
         unset($url[0]);
       } else {
-        // $this->currentController = 'Controller404';
+        $this->currentController = 'Controller404';
       }
     }
 
@@ -44,9 +44,9 @@ class Core
       }
     }
 
-    // Get params - Any values left over in url are params
+    // Get params - 
     $this->params = $url ? array_values($url) : [];
-    // Call a callback with an array
+    // call a callback with an array of parameters
     call_user_func_array([$this->currentController, $this->currentMethod], $this->params);
   }
 
@@ -57,7 +57,7 @@ class Core
     if (isset($_GET["url"])) {
       // Annuler espace chenge /
       $url = rtrim($_GET["url"], '/');
-      //supprmer les slach  "/"final
+      //supprimer les slach  "/"final
       $url = filter_var($url, FILTER_SANITIZE_URL);
       //Array 
       $url = explode('/', $url);

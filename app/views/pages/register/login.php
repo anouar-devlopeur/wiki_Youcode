@@ -25,7 +25,7 @@ require APPROOT . '/views/inc/HeaderHome.php'; ?>
             <div class="col col-xl-10">
                 <div class="card border border-dark" style="border-radius: 1rem;">
                     <div class="row g-0">
-                        <div class="col-md-6 col-lg-5 ">
+                        <div class=" col-12 col-md-6 col-lg-5 ">
                             <img src="<?= URLROOT ?>/img/img.png" alt="login form" class="img-fluid" />
                         </div>
                         <div class="col-md-6 col-lg-7 d-flex align-items-center">

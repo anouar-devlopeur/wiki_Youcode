@@ -56,7 +56,7 @@ class WikiDao
 
         }
     }
-
+// insert wiki
     public function InsertPost(Wiki $post)
     {
         try {
@@ -87,6 +87,7 @@ class WikiDao
             error_log("Error in Insert wiki: " . $e->getMessage());
         }
     }
+    //delet wiki
     public function DeletePost(Wiki $post)
     {
         try {
@@ -100,23 +101,15 @@ class WikiDao
         }
     }
 
-    //   search 
-
-    public function searchUsers($searchTerm)
-    {
-        $query = "SELECT title FROM wiki WHERE title LIKE :searchTerm";
-        $this->db->query($query);
-        $this->db->bind(':searchTerm', '%' . $searchTerm . '%');
-        $results = $this->db->fetchasoc();
-        $rech=array();
-        foreach($results as $row){
-            $wiki=new Wiki();
-            $wiki->setTitle($row['title']);
-            array_push($rech,$wiki);
-        }
-
-        return $rech;
-    }
+//   VALIDITION SUPPRIMER CAT IN ADMIN 
+public function CatgeoryByIDwiki($id){
+    $req="SELECT wiki.ID_Categorie FROM wiki WHERE wiki.ID_Categorie= :id ";
+    $this->db->query($req);
+    $this->db->bind(':id',$id);
+   $res= $this->db->single();
+    
+    return $res;
+}
 
     //update wiki 
     public function UpdateWiki(Wiki $update)

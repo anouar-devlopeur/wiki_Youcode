@@ -46,14 +46,14 @@ require APPROOT . '/views/inc/navbar.php';
             <label for="category" class="form-label">Category:</label>
             <select name="category" class="form-select">
                 <?php foreach ($data['Categorie'] as $category): ?>
-
-                <option selected="
-                <?= $category->getCategoryID() == $tagsWiki->getWiki()->getCategorie()->getCategoryID() ?>"
+                <option
+                    <?= ($category->getCategoryID() == $tagsWiki->getWiki()->getCategorie()->getCategoryID()) ? 'selected' : '' ?>
                     value="<?= $category->getCategoryID() ?>">
                     <?= $category->getCategoryName() ?>
                 </option>
                 <?php endforeach; ?>
             </select>
+
         </div>
 
         <div class="mb-3">

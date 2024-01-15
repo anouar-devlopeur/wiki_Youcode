@@ -14,7 +14,9 @@ class Database {
 		
 		$dsn = 'mysql:host=' . $this->host . ';dbname=' . $this->dbname;
 		$options = array (
+			// This attribute controls whether a persistent connection
 			PDO::ATTR_PERSISTENT => true,
+			// This attribute sets the error handling 
 			PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION 
 		);
 
@@ -52,33 +54,34 @@ class Database {
 		$this->stmt->bindValue($param, $value, $type);
 	}
 	
-	// Execute the prepared statement
+	// Execute 
 	public function execute(){
 		return $this->stmt->execute();
 	}
 	
-	// Get result set as array of objects
+	// Get fetch set as array of objects
 	public function fetchAll(){
 		$this->execute();
 		return $this->stmt->fetchAll(PDO::FETCH_OBJ);
 	}
+	// fetch Asoc
 	public function fetchasoc(){
 		$this->execute();
 		return $this->stmt->fetchAll(PDO::FETCH_ASSOC);
 	}
 	
-	// Get single record as object
+	// fetch single se form object
 	public function single(){
 		$this->execute();
 		return $this->stmt->fetch(PDO::FETCH_OBJ);
 	}
 	
-	// Get record row count
+	// fetch  row count
 	public function rowCount(){
 		return $this->stmt->rowCount();
 	}
 	
-	// Returns the last inserted ID
+	// Returns last inserted 
 	public function lastInsertId(){
 		return $this->dbh->lastInsertId();
 	}

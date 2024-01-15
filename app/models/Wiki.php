@@ -13,8 +13,7 @@ class Wiki{
         $this->Author=new AuthorDao();
         $this->categorie=new Categorie();
     }
-    
-    
+       
 
     /**
      * Get the value of wikiID

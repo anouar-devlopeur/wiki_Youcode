@@ -97,11 +97,7 @@ class User
         return $this->IMAGE;
     }
 
-    /**
-     * Set the value of IMAGE
-     *
-     * @return  self
-     */ 
+ 
     public function setIMAGE($IMAGE)
     {
         $this->IMAGE = $IMAGE;

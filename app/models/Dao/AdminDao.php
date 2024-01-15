@@ -9,6 +9,7 @@ class AdminDao extends User
     {
         $this->db = new Database();
     }
+    // afiche statistique
     function affiche_Statistiques($tableName) {
         try {
             $req = "SELECT COUNT(*) AS count FROM $tableName";
@@ -24,27 +25,6 @@ class AdminDao extends User
     }
   
     
-    // public function login($email, $password)
-    // {
-    //     $query = "SELECT * FROM user WHERE email = :email LIMIT 1";
-    //     $this->db->query($query);
-    //     $this->db->bind(':email', $email);
-    //     $result = $this->db->single();
-    
-    //     if ($result) {
-    //         // Verify password
-    //         if (password_verify($password, $result['password'])) {
-    //             // Password is correct
-    //             $this->setId_user($result['id_user']);
-    //             $this->setNom($result['nom']);
-    //             $this->setEmail($result['email']);
-    //             $this->setRole($result['role']);
-    //             return true;
-    //         }
-    //     }
-    
-    //     // Login failed
-    //     return false;
-    // }
+
     
 }

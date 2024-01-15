@@ -24,22 +24,38 @@ class Pages extends Controller
 
     public function search()
     {
+        // RECPPER BADY IN REQUEST 
         $data = json_decode(file_get_contents("php://input"), true);
-        
-            $searchTerm = $data['search'];
-            $results = $this->wiki->searchUsers($searchTerm);
-            $array = array();
+    
+        $searchTerm = $data['search'];
+        $results = $this->tags_Wiki->searchUsers($searchTerm);
+    
+        $array = [];
+    
+        if (empty($results)) {
+            $data = ['message' => 'Not found'];
+            $array[] = $data;
+        } else {
             foreach ($results as $wiki) {
                 $data = [
-                    'title' => $wiki->getTitle(),
+                    'id' => $wiki->getWiki()->getWikiID(),
+                    'title' => $wiki->getWiki()->getTitle(),
+                    'content' => $wiki->getWiki()->getContent(),
+                    'Image' => $wiki->getWiki()->getImage(),
+                    'Date_Create' => $wiki->getWiki()->getDateCreated(),
+                    'Author' => $wiki->getWiki()->getAuthor()->getNom(),
+                    'Categorie' => $wiki->getWiki()->getCategorie()->getCategoryName(),
+                    'Tags' => $wiki->getTags()->getTagName()
                 ];
                 $array[] = $data;
             }
+        }
     
-            
-            echo json_encode($array);
-        
+        echo json_encode($array);
     }
+    
+    
+  
 
     public function RechercheCat()
     {
